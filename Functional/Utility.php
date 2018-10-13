@@ -50,6 +50,10 @@ class Utility
             */
         }
 
+        /**
+         * 
+         */
+        function getboolean(0000000001){}
 
    /**
      * prints Power of 2
