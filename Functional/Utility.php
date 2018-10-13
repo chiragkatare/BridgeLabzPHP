@@ -21,6 +21,65 @@ class Utility
         echo "heads is ".$head." \nTails is".($times-$head)."\n";
     }
 
-    public function leapYear($year){}
+    /**
+     * 
+     */
+    public function isLeapYear($year){
+        return (($year % 4 == 0) && ($year % 100 != 0)) || ($year % 400 == 0);
+    }
+
+    /**
+     * to get input unless its an integer
+     */
+    public function getInt(){
+
+        fscanf(STDIN,"%d\n",$val);
+        while(!is_numeric($val)){
+            echo "ivalid input try again";
+            fscanf(STDIN,"%d\n",$val);
+        }
+        return $val ;
+
+       /* fscanf(STDIN,"%d\n",$val);
+        if(is_numeric($val)){
+            return $val;
+        }
+        else{
+            echo "invalid input";
+            Utility::getInt() ;
+            */
+        }
+
+
+   /**
+     * prints Power of 2
+     * 
+     */
+    public function powerOf2($power){
+        for($s= 1 ; $s<=$power ; $s++){
+            $pow = 2**$s ;
+            echo "\n".$pow;
+        }
+    }
+
+    /**
+     * Function to find if no is prime or not
+     */
+    function isPrime($n){
+        for ($i = 2; $i <= $n / 2; $i++) {
+			if ($n % $i == 0) {
+				return false;
+			}
+        }
+        return true ;
+    }
+
+
+
+
+
+
+
+
 }
 ?>
