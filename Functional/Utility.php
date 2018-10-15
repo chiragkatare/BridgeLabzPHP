@@ -50,10 +50,28 @@ class Utility
             */
         }
 
+        function getString(){
+            fgets(STDIN);
+        while(!is_string($val)){
+            echo "ivalid input try again";
+            fgets(STDIN);
+        }
+        return $val ;
+        }
+
         /**
          * 
          */
-        function getboolean(0000000001){}
+        function getIntArr(){
+            echo "enter array size";
+            $size = Utility::getInt();
+            $arr = array();
+            echo "enter array value ";
+            for($i = 0 ; $i < $size ; $i++ ){
+                $arr[$i] = Utility::getInt(); 
+            }
+            return $arr ;
+       }
 
    /**
      * prints Power of 2

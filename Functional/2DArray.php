@@ -13,7 +13,6 @@ class Array2D{
 
 
     function getArr($l , $b){
-        $l = 3 ; $b = 3 ;
         $arr = array();
         for($i = 0 ;$i<$l;$i++){
             $aa = array();
@@ -25,6 +24,11 @@ class Array2D{
         return $arr ;
     }
 }
-$arr = Array2D::getArr(3, 3);
+echo "Enter column ";
+$column = Utility::getInt();
+echo "enter Row ";
+$row = Utility::getInt();
+echo "enter values";
+$arr = Array2D::getArr($column, $row);
 Array2D::print($arr);
 ?>
