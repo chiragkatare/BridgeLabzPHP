@@ -158,8 +158,9 @@ class Utility
 
     /**
      * Function to imlement binary search
+     * return index if found or false if not found
      */
-    function binary($n , $arr ){
+    function binarySearch($n , $arr ){
         $size = count($arr);
         $mid ;
         $low = 0 ;
@@ -170,9 +171,15 @@ class Utility
                 if($n==$arr[$mid]){
                     return $mid ;
                 }
-
+                else if($n>$arr[$mid]){
+                    $low = $mid+1;
+                }
+                else{
+                    $high = $mid - 1 ;
+                }
             }
         }
+        return false ;
     }
     
     /**
@@ -221,7 +228,7 @@ function bubbleSort($arr){
         }
     }
 
-}
+}   
 
 
 
