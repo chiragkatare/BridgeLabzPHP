@@ -1,6 +1,6 @@
 <?php
 /**
- * Helper Function containing methods to use in othere php class
+ * Helper Class containing methods to use in othere php class
  */
 
 class Utility

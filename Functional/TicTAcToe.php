@@ -30,6 +30,7 @@ require("Utility.php");
      }  
     }
 
+    //function to display board with current values of x and y
     function dispBoard(){
         $count = 0 ;
         for($i = 0 ;$i<3;$i++){
@@ -56,6 +57,11 @@ require("Utility.php");
      }  
     }
 
+    /**
+     * Function to check for win 
+     * @return true if won
+     * @return false if not won 
+     */
     function win(){
         return ((self::$board[0][0] + self::$board[0][1] + self::$board[0][2] == self::$player * 3)
 				|| (self::$board[1][0] + self::$board[1][1] + self::$board[1][2] == self::$player * 3)
@@ -67,9 +73,15 @@ require("Utility.php");
 				|| (self::$board[2][0] + self::$board[1][1] + self::$board[0][2] == self::$player * 3));
     }
 
+    /**
+     * Function to put values in the board
+     */
     function putVal(){
         $i;
         $j;
+        /**
+         * check  for player value and give input
+         */
         if(self::$player==1){
            $i = rand(0,2);
            $j = rand(0,2); 
@@ -83,6 +95,7 @@ require("Utility.php");
             $j = Utility::getInt();
             }
         }
+        //put value in the board
         if(self::$board[$i][$j]==-10){
             if(self::$player==1){
                 self::$board[$i][$j]=0;
@@ -97,9 +110,13 @@ require("Utility.php");
         }
     }
 
-
-
+    /**
+     * simulate play of tic tac toe by calling other methods
+     */
     function play(){
+        /**
+         * run the game by calling init function and checkin for win after each put value function call
+         */
         self::initBoard();
         self::dispBoard();
         while(self::$isempty){

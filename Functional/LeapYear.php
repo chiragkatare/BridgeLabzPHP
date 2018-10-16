@@ -12,6 +12,7 @@ class LeapYear{
         echo "enter year";
         $year = Utility::getInt();
         if(strlen((string)$year)==4){
+            // calling method in Utility to check if its leap year or not
             if(Utility::isLeapYear($year))
                echo  "is leap year";
           else

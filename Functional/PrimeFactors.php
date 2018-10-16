@@ -1,6 +1,10 @@
 <?php 
+/**
+ * Computes the prime factorization of N using brute force.
+ */
 require("Utility.php");
 class PrimeFactors{
+    //checks the no if its divisible by a prime no or not
     function primeF(){
         echo "Enter a no : ";
         $numb = Utility::getInt();
@@ -20,6 +24,6 @@ class PrimeFactors{
         echo "\n";
     }
 }
-
+//calling the method
 PrimeFactors::primeF();
 ?>

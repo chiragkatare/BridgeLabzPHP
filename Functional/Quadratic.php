@@ -1,6 +1,13 @@
 <?php
+/**
+ * Program Quadratic.java to find the roots of the equation a*x*x + b*x + c. 
+ */
 require("Utility.php");
 class Quadratic{
+
+    /**
+     * Function to calculate the roots and print them on screen.
+     */
     function calc(){
         echo "roots for a*x*x+b*x+c \n";
         echo "enter a ";
@@ -16,5 +23,6 @@ class Quadratic{
         echo "roots are ".$root1." & ".$root2;
     }
 }
+//callin the runner function
 Quadratic::calc();
 ?>

@@ -1,6 +1,16 @@
 <?php
+/**
+ *  program WindChill.java that takes two double command-line arguments t and v and prints the wind chill. 
+ *  
+ * @author chiragkatare
+ * @version 2.0   
+ * @since 03-10-2018
+ */
 require("Utility.php");
 class Windchill{
+    /**
+     * computes the wind temperature and returning it by using forumla below
+     */
     function cal(){
         echo "enter speed ";
         $ws = Utility::getInt();

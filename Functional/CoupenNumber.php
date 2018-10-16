@@ -21,6 +21,7 @@ Class CoupenNumbers{
          echo "Coupen is : ".$coupen."\n";
     }
 }
+//calling the method
 CoupenNumbers::coupens();
 
 ?>
