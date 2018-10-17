@@ -1,11 +1,15 @@
 <?php
 /**
  * Helper Function containing methods to use in othere php class
+ * @author chiragkatare
+ * @version 2.0   
+ * @since 15-10-2018
  */
 class Utility
 {
     /**
      * Method to print heads ands and tails by taking input for no of times
+     * @param times the no of times to flip the coin
      */
     static public function flip($times){
         $head = 0 ;
@@ -17,7 +21,7 @@ class Utility
                 $head++;
             }
         }
-        echo "heads is ".$head." \nTails is".($times-$head)."\n";
+        echo "heads is ".$head." \nTails is ".($times-$head)."\n";
     }
     /**
      * 
@@ -57,6 +61,7 @@ class Utility
         }
         /**
          * takin input as an array and return it
+         * @return array the int array by user input
          */
     static function getIntArr(){
             echo "enter array size";
@@ -71,6 +76,7 @@ class Utility
 
        /**
         * Function to create String array and return the array
+        * @return the string array by getting user input
         */
        static function getStrArr(){
         echo "enter array size";
@@ -85,6 +91,7 @@ class Utility
 
    /**
     * Function to print contents of array
+    *@param arr the array to print contents of 
     */
    static function printArr($arr){
        $size = sizeof($arr);
@@ -98,7 +105,7 @@ class Utility
 
    /**
      * prints Power of 2
-     * 
+     * @param power the value till to count power of 2
      */
     static public function powerOf2($power){
         for($s= 1 ; $s<=$power ; $s++){
@@ -108,6 +115,9 @@ class Utility
     }
     /**
      * Detects if given strings are anagrams or not
+     * @param s1 the first string
+     * @param s2 the second string to check
+     * @return true/false if anagrram or not
      * 
      */
     static function isAnagram($s1,$s2){
@@ -132,10 +142,12 @@ class Utility
         }
         /**
          * Funtion to check if a string is pallindrome or not 
+         * 
+         * @param s1 string value to check 
          */
-    static function isPallindrome($s1 , $s2 ){
+    static function isPallindrome($s1 ){
             $arr1 = str_split($s1,1);
-            $arr2 = str_split($s2,1);
+            $arr2 = str_split(strrev($s1),1);
             if(count($arr1)!=count($arr2)){
                 return false ;
             }
@@ -149,6 +161,8 @@ class Utility
         }
     /**
      * Function to find if no is prime or not
+     * @param n the no to check
+     * @return true/false if prime or  not
      */
     static function isPrime($n){
         for ($i = 2; $i <= $n / 2; $i++) {
@@ -174,6 +188,9 @@ class Utility
     /**
      * Function to imlement binary search
      * return index if found or false if not found
+     * 
+     * @param n the no to search
+     * @param arr the array in which to search 
      */
     static function binarySearch($n , $arr ){
         $size = count($arr);
@@ -199,6 +216,8 @@ class Utility
     
     /**
      * Function to sort integer array using insertion sort
+     * @param arr the array to be sorted
+     * @return arr sorted array
      */
     static function insertionSort($arr){
         //gets the size of array
@@ -219,6 +238,9 @@ class Utility
     
     /**
      * Function to sort an array of string
+     * 
+     * @param arr array tobe sorted 
+     * @return arr sorted array
      */
     static function insSortString  ($arr){
        //gets the size of array
@@ -238,6 +260,9 @@ class Utility
    }
 /**
  * Function to sort integer array using bubble sort algorithm
+ * 
+ * @param arr the array to be sorted
+ * @return arr sorted array 
  */
     static function bubbleSort($arr){
         $n = sizeof($arr); 
@@ -262,12 +287,82 @@ class Utility
         return $arr;
     }
 
+    /**
+     * Function to find squre root of a no using newtons method
+     * @param c the integer no of which to find square root 
+     * @return c the value of square root
+     */
+    static function sqrt($c){
+        $t = $c ;
+        $epsilon = 1e-15 ;
+        while(abs($t-($c/$t))>$epsilon*$t){
+            $t = ($c/$t + $t)/2 ;
+        }
+        return $t ;
+    }
+
+    /**
+     * Function to calculate temperature from celcius to fahrenhiet and vice-versa
+     * 
+     * @param temp the temperature to convert 
+     * @param chtemp the character containing the c or f fot temp 
+     * @return conv the converted temperature 
+     */
+    static function tempconv($temp , $chtemp){
+        if(strpos($chtemp , "c")===false&&strpos($chtemp , "C")===false){
+            $conv =  ($temp * 9/5) + 32 ; 
+        }
+        else{
+            $conv =  ($temp - 32) * 5/9 ; 
+        }
+        return $conv ;
+    }
+
+    /** 
+     * static function calculating day of week using below formula and returning it
+     * 
+     * @return d0 the day of the week
+     */
+    static function dayOfWeek($d , $m , $y){
+        $y0 = floor($y - (14 - $m) / 12) +1 ;
+        $x = floor($y0 + $y0/4 - $y0/100 + $y0/400);
+        $m0 = ($m + 12 * floor(((14 - $m) / 12)) - 2);
+        $d0 = floor(($d + $x + floor((31*$m0) / 12)) % 7) ;
+        return $d0;
+    }
 
 
+    /**
+     * Function to convert decimal to binary 
+     * 
+     * @param integer the decimal number
+     * @return bin the binary nomber
+     */
+    static function toBin($dec){
+        $bin = "";
+        while ($dec>=1){
+        $bin = ($dec % 2).$bin;
+        $dec = round($dec/2, 0, PHP_ROUND_HALF_DOWN);
+        }
+        return $bin;
+    }
 
-
-
-
+    /**
+     * function to convert binary to decimal 
+     */
+    static function binToDec($bin){
+        $binArr = str_split($bin);
+        $dec = 0 ;
+        $j = 0 ;
+        for ($i=count($binArr)-1 ; $i >= 0 ; $i--) { 
+            if($binArr[$i] == 1){
+                $dec = $dec +  2**$j ;
+            }
+            $j++;
+        }
+        echo $dec ;
+        return $dec ;
+    }
 
 
 

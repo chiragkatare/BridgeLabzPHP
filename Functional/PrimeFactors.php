@@ -8,8 +8,9 @@ class PrimeFactors{
     function primeF(){
         echo "Enter a no : ";
         $numb = Utility::getInt();
+        echo "prime factors are \n";
         if(Utility::isPrime($numb)){
-            echo $numb;
+            echo $numb."\n";
             return ;
         }
         $num = $numb ;

@@ -14,7 +14,7 @@ class Anagram{
     /**
      * function to take user inputs and check the strings are anagrams or not
      */
-    function isAnagram(){
+    static function isAnagram(){
         echo "Enter first word ";
         //Calling method in utility class to input string
         $s1 = Utility::getString();
@@ -30,9 +30,9 @@ class Anagram{
     }
 
     /**functio tofind the prime no bw 0 to 1000
-     * 
+     * @return array of prime number
      */
-        function prime1000(){
+    static function prime1000(){
             $prime = array();
             $s = 0 ;
             for($i = 0 ;$i <1000 ; $i++){
@@ -46,23 +46,23 @@ class Anagram{
         /**
          * function to find the prime no which also anagrams bw 0 to 1000
          */
-        function primeAnagrams($prime){
-            $n = count($prime);
-            for($i = 0 ;$i <$n ; $i++){
-                for($j = 0 ;$j <$n ; $j++){
-                    if($i!=$j){
-                        if(Utility::isAnagram((string)$prime[$i],(string)$prime[$j])){
-                            echo $prime[$i]." ".$prime[$j]."\n";
-                        }
+    static function primeAnagrams($prime){
+        $n = count($prime);
+        for($i = 0 ;$i <$n ; $i++){
+            for($j = 0 ;$j <$n ; $j++){
+                if($i!=$j){
+                    if(Utility::isAnagram((string)$prime[$i],(string)$prime[$j])){
+                        echo $prime[$i]." ".$prime[$j]."\n";
                     }
                 }
             }
         }
+    }   
 
         //main function to test the above function
-        function main(){
-            self::primeAnagrams(self::prime1000());
-        }
+    static function main(){
+        self::primeAnagrams(self::prime1000());
+    }
 }
 
 //calling main function

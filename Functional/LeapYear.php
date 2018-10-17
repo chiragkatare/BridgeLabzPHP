@@ -9,7 +9,7 @@ require("Utility.php");
 class LeapYear{
 
     function leap(){
-        echo "enter year";
+        echo "enter year ";
         $year = Utility::getInt();
         if(strlen((string)$year)==4){
             // calling method in Utility to check if its leap year or not
@@ -21,7 +21,7 @@ class LeapYear{
 
         }
         else{
-            echo "enter valid year";
+            echo "enter valid year ";
         }
     }
 }

@@ -1,24 +1,29 @@
 <?php
+/**
+ *given the temperature in fahrenheit as input outputs the 
+ * temperature in Celsius or viceversa
+ * 
+ * @author chiragkatare
+ * @version 1.0   
+ * @since 15-10-2018
+ */
+
+ //requires function in utility class
 require("Utility.php");
 class TemperatureConversion{
-    static function tempconv($temp , $chtemp){
-        if(strpos($chtemp , "c")===false){
-            $conv =  ($temp * 9/5) + 32 ; 
-        }
-        else{
-            $conv =  ($temp - 32) * 5/9 ; 
-        }
-        return $conv ;
-    }
 
+    /**
+     * function to get user input and test the class
+     */
     static function main(){
-        echo "enter temperature";
+        echo "enter temperature ";
         $temp = Utility::getInt();
-        echo "enter c or f for given temperature";
+        echo "enter c or f for given temperature ";
         $chtemp = Utility::getString();
-        $conv = self::tempconv($temp , $chtemp);
+        $conv = Utility::tempconv($temp , $chtemp);
         echo "converted temperature is ".$conv."\n" ;
     }
 }
+//calling main function
 TemperatureConversion::main();
 ?>

@@ -9,14 +9,26 @@ require("Utility.php");
      */
 class Vending{
     /**
-     * function to check the notes of given amount
+     * function to check the notes of given amount using recursion
      */
-    function notes (){
+    static $note = array(1,2,5,10,50,100,500,1000);
+
+
+    static function recNotes($amount, $noteSize){
+        if($noteSize<0){
+            return ;
+        }
+        if(floor($amount/self::$note[$noteSize]) != 0){
+            echo floor($amount/self::$note[$noteSize])." notes of ".self::$note[$noteSize]." rs\n";
+        }
+        $amount %=self::$note[$noteSize];
+        $noteSize--;
+        self::recNotes($amount,$noteSize);
+        return ;
+     }
+    function notes ($amount){
         //array to store the values of note machine has
         $note = array(1,2,5,10,50,100,500,1000);
-        //empty array to store the value of notes
-        echo "enter amount \n" ;
-        $amount = Utility::getInt();
         $size = sizeof($note);
         //loop to check fot the no of notes required and print it 
         for($i = $size-1 ; $i >=0 ; $i--){
@@ -28,5 +40,7 @@ class Vending{
         }
     }
 }
-Vending::notes();
+echo "enter amount ";
+$amount = Utility::getInt();
+Vending::recnotes($amount , 7);
 ?>

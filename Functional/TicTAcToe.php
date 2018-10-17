@@ -15,7 +15,7 @@ require("Utility.php");
      public static $board = array(array(), array());
 
      //static variable to store player value
-     public static $player = 0 ;
+     public static $player = 1 ;
 
      //static boolean to store if there is a place in the board
      public static $isempty = true ; 
@@ -27,7 +27,8 @@ require("Utility.php");
             for($j = 0 ;$j <3 ;$j++){
                 self::$board[$i][$j] = -10 ; 
             }
-     }  
+     }
+     echo "Player is X";  
     }
 
     //function to display board with current values of x and y
@@ -36,6 +37,8 @@ require("Utility.php");
         for($i = 0 ;$i<3;$i++){
             echo"---------------\n";
             echo"||";
+            //displays X and O only if there is calculates the monthly payments you would have to make over Y years to pay off a P principal loan amount at R per cent interest compounded monthly. and 1
+            //other wise display blank
             for($j = 0 ;$j <3 ;$j++){
                 if(self::$board[$i][$j]==0){
                     $count++;
@@ -50,6 +53,7 @@ require("Utility.php");
                 }
             }
             echo"|\n";
+            //checking the board if it has space left or not
             if($count==9){
                 self::$isempty == false ;
             }
@@ -82,11 +86,14 @@ require("Utility.php");
         /**
          * check  for player value and give input
          */
-        if(self::$player==1){
+
+        if(self::$player==0){
+            //get computers input using random
            $i = rand(0,2);
            $j = rand(0,2); 
         }
         else{
+            //getting user input untill desired value is entered
             $i = Utility::getInt();
             $j = Utility::getInt();
             while($i>2||$j>2){
@@ -97,12 +104,12 @@ require("Utility.php");
         }
         //put value in the board
         if(self::$board[$i][$j]==-10){
-            if(self::$player==1){
+            if(self::$player==0){
                 self::$board[$i][$j]=0;
+                echo"computer choosing ".$i." ".$j."\n";
             }
             else{
                 self::$board[$i][$j]=1;
-                echo"computer choosing".$i." ".$j."\n";
             }
         }
         else{
@@ -119,6 +126,7 @@ require("Utility.php");
          */
         self::initBoard();
         self::dispBoard();
+        //run the game while boars is empty
         while(self::$isempty){
             echo" players turn ";
             self::putVal();
@@ -127,7 +135,7 @@ require("Utility.php");
                 echo"Player won";
                 return;
             }
-            self::$player = 1;
+            self::$player = 0;
             echo"computers turn\n";
             self::putVal();
             self::dispBoard();
@@ -135,8 +143,12 @@ require("Utility.php");
                 echo"computer won\n";
                 return;
             }
-            self::$player = 0;
+            self::$player = 1;
 
+        }
+        //if no one won then the game will be draw !!!!
+        if(self::$isempty==false){
+            echo "Draw";
         }
     }
  }

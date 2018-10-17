@@ -12,6 +12,7 @@ class Windchill{
      * computes the wind temperature and returning it by using forumla below
      */
     function cal(){
+        //getting user input
         echo "enter speed ";
         $ws = Utility::getInt();
         echo "enter temperature " ;
@@ -21,5 +22,6 @@ class Windchill{
 
     }
 }
+//calling cal function to calculate wind chill and print
 Windchill::cal();
 ?>

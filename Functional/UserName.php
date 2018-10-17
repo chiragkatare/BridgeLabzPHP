@@ -10,8 +10,9 @@ class UserName{
      * take user name and replace in the string
      */
     function get_name(){
-        $output =  "Hello <<UserName>>, How are you";
-        $name = readline("enter your name");
+        $output =  "Hello <<UserName>>, How are you\n";
+        $name = readline("enter your name : ");
+        //replacing string using method str_replace
          $output =  str_replace("<<UserName>>",$name, $output);
         echo $output ;
     }

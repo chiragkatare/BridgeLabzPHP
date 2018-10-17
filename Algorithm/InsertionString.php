@@ -19,6 +19,6 @@ class InsertionString{
         echo Utility::printArr($arr);
     }
 }
-//calling
+//calling function
 InsertionString::insertion();
 ?>

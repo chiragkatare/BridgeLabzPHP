@@ -23,6 +23,11 @@ class SearchGame{
                 echo "If your no is bw ".$mid." and ".$high." press 2\n";
                 //gettin user no for choice
                 $s = Utility::getInt();
+                /**
+                 * user enters 2 and 1 according to output
+                 */
+
+                 //if low is high then the no is found
                 if($high == $mid){
                     echo "your no is ".$high;
                     return $high ;
@@ -37,6 +42,6 @@ class SearchGame{
         } 
     }
 }
-echo "Gues number bw 0 to 1027 ";
+echo "Gues number between 0 to 1027 ";
 SearchGame::search();
 ?>

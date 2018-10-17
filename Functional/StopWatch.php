@@ -9,7 +9,7 @@ class StopWatch{
     /**
      * Function to Store end clicktime and start click time and print elapsed time
      */
-    function watch(){
+    static function watch(){
         echo"StopWatch\n";
         echo "enter to start ";
         $i = fgets(STDIN);
@@ -20,7 +20,7 @@ class StopWatch{
         //get stop time
         $stop = round(microtime(true)*1000);
         //prints elapsed time
-        echo "Time elapsed is ".($stop-$start)/1000;
+        echo "Time elapsed : ".(($stop-$start)/1000)." seconds\n";
     }
 }
 

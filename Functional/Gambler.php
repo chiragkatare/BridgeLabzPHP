@@ -11,6 +11,7 @@ class Gambler{
      * Function to initiate gambling in the function 
      */
     function gamble(){
+        echo "stack should be less than goal\n";
         echo "Enter stack ";
         $stack = Utility::getInt();
         echo "enter goal ";
@@ -39,7 +40,7 @@ class Gambler{
         // display results of gamble
         echo $wins." wins out of ".$times;
         echo "\ntotal bets : ".$bets."\n" ;
-        echo "wins % is ".($wins/$times * 100);
+        echo "wins % is ".($wins/$times * 100)."%\n";
     }
 }
 

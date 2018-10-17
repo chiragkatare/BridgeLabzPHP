@@ -15,7 +15,7 @@ class Harmonic{
         for($i = 2 ; $i<=$value ; $i++){
             $har += 1/$i;
         }
-        echo "the ".$value."th harmonic number is ".$har;
+        echo "the ".$value."th harmonic number is ".$har."\n";
     }
 }
 Harmonic::getHarmonic();
