@@ -64,7 +64,7 @@ class Utility
          * @return array the int array by user input
          */
     static function getIntArr(){
-            echo "enter array size";
+            echo "enter array size ";
             $size = Utility::getInt();
             $arr = array();
             echo "enter array value ";
@@ -79,10 +79,10 @@ class Utility
         * @return the string array by getting user input
         */
        static function getStrArr(){
-        echo "enter array size";
+        echo "enter array size ";
         $size = Utility::getInt();
         $arr = array();
-        echo "enter array value ";
+        echo "enter array value \n";
         for($i = 0 ; $i < $size ; $i++ ){
             $arr[$i] = Utility::getString(); 
         }
@@ -362,6 +362,21 @@ class Utility
         }
         echo $dec ;
         return $dec ;
+    }
+
+    //sets the start time ot system time
+    static function startTime(){
+        return $start = (microtime(true)*1000);
+    }
+
+    //sets stop time at system time
+    static function stopTime(){
+        return $stop = (microtime(true)*1000);
+    }
+
+    //get elapsed time by counting start time and stop time
+    static function elapsedTime($start , $stop){
+        return "Time : ".(($stop-$start)/1000)." seconds\n";
     }
 
 

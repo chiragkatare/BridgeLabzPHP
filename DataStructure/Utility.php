@@ -21,7 +21,7 @@ class Utility
                 $head++;
             }
         }
-        echo "heads is ".$head." \nTails is".($times-$head)."\n";
+        echo "heads is ".$head." \nTails is ".($times-$head)."\n";
     }
     /**
      * 
@@ -64,7 +64,7 @@ class Utility
          * @return array the int array by user input
          */
     static function getIntArr(){
-            echo "enter array size";
+            echo "enter array size ";
             $size = Utility::getInt();
             $arr = array();
             echo "enter array value ";
@@ -79,10 +79,10 @@ class Utility
         * @return the string array by getting user input
         */
        static function getStrArr(){
-        echo "enter array size";
+        echo "enter array size ";
         $size = Utility::getInt();
         $arr = array();
-        echo "enter array value ";
+        echo "enter array value \n";
         for($i = 0 ; $i < $size ; $i++ ){
             $arr[$i] = Utility::getString(); 
         }
@@ -331,17 +331,65 @@ class Utility
         return $d0;
     }
 
+
+    /**
+     * Function to convert decimal to binary 
+     * 
+     * @param integer the decimal number
+     * @return bin the binary nomber
+     */
+    static function toBin($dec){
+        $bin = "";
+        while ($dec>=1){
+        $bin = ($dec % 2).$bin;
+        $dec = round($dec/2, 0, PHP_ROUND_HALF_DOWN);
+        }
+        return $bin;
+    }
+
+    /**
+     * function to convert binary to decimal 
+     */
+    static function binToDec($bin){
+        $binArr = str_split($bin);
+        $dec = 0 ;
+        $j = 0 ;
+        for ($i=count($binArr)-1 ; $i >= 0 ; $i--) { 
+            if($binArr[$i] == 1){
+                $dec = $dec +  2**$j ;
+            }
+            $j++;
+        }
+        echo $dec ;
+        return $dec ;
+    }
+
+    //sets the start time ot system time
     static function startTime(){
-        return $start = round(microtime(true)*1000);
+        return $start = (microtime(true)*1000);
     }
+
+    //sets stop time at system time
     static function stopTime(){
-        return $stop = round(microtime(true)*1000);
+        return $stop = (microtime(true)*1000);
     }
 
+    //get elapsed time by counting start time and stop time
     static function elapsedTime($start , $stop){
-        return "Time : ".((self::$stop-self::$start)/1000)." seconds\n";
+        return "Time : ".(($stop-$start)/1000)." seconds\n";
     }
 
+    /**
+     * function to read the file and return the array of words
+     */
+    function readFile($fname){
+        //opens the file if not found die by printing the error "unable to open file"
+        $file = fopen($fname ,"r") or die("Unable to open file ");
+        //reads the file and save the contents in the string
+        $contents = fread($file , filesize($fname));
+        //returns contents
+        return $contents ;
+    }
 
 
 

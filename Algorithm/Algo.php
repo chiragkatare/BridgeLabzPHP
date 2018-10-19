@@ -1,10 +1,27 @@
 <?php
 require("Utility.php");
 class CheckAlgo{
-    function sort($arr){
-        var_dump($arr);
-        $arr = Utility::bubbleSort($arr);
-        var_dump($arr);     
+    static function sort($arr){
+        //Bubble Sort 
+        $start = Utility::startTime();
+        Utility::bubbleSort($arr);
+        $stop = Utility::stopTime();
+        //var_dump($arr);
+        echo "Bubble sorted in ".Utility::elapsedTime($start , $stop); 
+        
+        //insertion sort 
+        $start = Utility::startTime();
+        $arr = Utility::insertionSort($arr);
+        $stop = Utility::stopTime();
+        echo "Insertion sorted in ".Utility::elapsedTime($start , $stop); 
+        
+        //Binary Search
+        echo "enter element to search in binary search ";
+        $n = Utility::getInt();
+        $start = Utility::startTime();
+        $arr = Utility::binarySearch($n ,$arr);
+        $stop = Utility::stopTime();
+        echo "binary searched in ".Utility::elapsedTime($start , $stop);  
     }
 }
 $arr = Utility::getIntArr();

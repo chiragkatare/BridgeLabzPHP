@@ -6,24 +6,38 @@
  * @since 03-10-2018
  */
 class StopWatch{
-    /**
+   
+    static $start ;
+    static $stop ;
+    static function start(){
+        self :: $start = round(microtime(true)*1000);
+    }
+    static function stop(){
+        self::$stop = round(microtime(true)*1000);
+    }
+
+    static function elapsed(){
+        return "Time : ".((self::$stop-self::$start)/1000)." seconds\n";
+    }
+
+     /**
      * Function to Store end clicktime and start click time and print elapsed time
      */
-    static function watch(){
+    function watch(){
         echo"StopWatch\n";
         echo "enter to start ";
         $i = fgets(STDIN);
         //get start time
-        $start = round(microtime(true)*1000);
+        self :: $start = round(microtime(true)*1000);
         echo"enter 2 to stop ";
         $i = fgets(STDIN);
         //get stop time
-        $stop = round(microtime(true)*1000);
+        self::$stop = round(microtime(true)*1000);
         //prints elapsed time
-        echo "Time elapsed : ".(($stop-$start)/1000)." seconds\n";
+        echo self::elapsed();
     }
 }
 
-StopWatch::watch();
+$watch = StopWatch::watch();
 
 ?>
