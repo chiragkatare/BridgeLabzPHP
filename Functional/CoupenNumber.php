@@ -22,8 +22,17 @@ Class CoupenNumbers{
          //printing the coupen
          echo "Coupen is : ".$coupen."\n";
     }
+
+    function generate(){
+        echo "enter no of coupens to generate : ";
+        $num = Utility::getInt();
+        for ($i=0; $i < $num ; $i++) { 
+            self::coupens();
+        }
+        echo "random used ".$num." times";
+    }
 }
 //calling the method
-CoupenNumbers::coupens();
+CoupenNumbers::generate();
 
 ?>

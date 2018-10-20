@@ -5,10 +5,9 @@
 
  //require the methods in Utility class
 require("Utility.php");
-class Distance{
 
     /**
-     * Function to calculate the distance and print the distance
+     * Function to calculate the distance between two points on cartesian plane and print the distance
      */
     function dist(){
         echo"Enter value of x ";
@@ -18,8 +17,7 @@ class Distance{
         $sqrt  =sqrt(($x*$x)+($y*$y));
         echo "distance is ".$sqrt."\n";
     }
-}
 //calling the method
-Distance::dist();
+dist();
 
 ?>

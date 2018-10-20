@@ -4,6 +4,7 @@
  */
 
 class Node{
+    //for storing the data
     public $data ;
     public $next = null ;
     
