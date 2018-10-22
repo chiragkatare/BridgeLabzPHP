@@ -170,23 +170,28 @@ class OrderedList{
      * @return data which is removed
      */
     function pop(){
-        if($this->size()==0){
-            echo "empty";
-            return ;
-        }
-        if($this->head->next == null){
-            $this->head = null ;
+        try{
+            if($this->size()==0){
+                echo "empty";
+                throw new Exception("No Item To Pop ,Empty!!!!!!");
+            }
+            if($this->head->next == null){
+                $this->head = null ;
+                $this->size--;
+                return;
+            }
+            $node = $this->head ;
+            $prev ;
+            while($node->next!= null){
+                $prev = $node ;
+                $node = $node->next ;
+            }
+            $prev->next = null;
             $this->size--;
-            return;
         }
-        $node = $this->head ;
-        $prev ;
-        while($node->next!= null){
-            $prev = $node ;
-            $node = $node->next ;
+        catch(Exception $e){
+            echo "\n",$e->getMessage(),"\n";
         }
-        $prev->next = null;
-        $this->size--;
     }
 
 

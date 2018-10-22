@@ -19,7 +19,7 @@ class BubbleSort{
         $arr = Utility::bubbleSort($arr);
         echo "sorted array is ";
         //printing the array 
-        echo Utility::printArr($arr);
+        echo Utility::printArr($arr)."\n";
 
     }
 }

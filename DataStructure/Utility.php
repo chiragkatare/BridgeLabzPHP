@@ -402,4 +402,31 @@ class Utility
 
     
 } 
+
+
+/**
+ * Function to check the expression have balanced parenthesis or not 
+ */
+function balParethesis($exp){
+    require("Stack.php");
+//    / $exp = "(((5+6)∗(7+8)/(4+3)(5+6)∗(7+8)/(4+3))";
+    $stack = new Stack();
+    for ($i=0; $i < strlen($exp); $i++) { 
+        if($exp[$i]=='('){
+            $stack->push($exp[$i]);
+        }
+        else if($exp[$i]==')'){
+            if($stack->isEmpty())
+            {echo"Unbalanced\n";
+            return;}
+            $stack->pop();
+        }
+    }
+    if ($stack->isEmpty()){
+        echo "paranthesis is balanced\n";
+    }
+    else{
+        echo "Paranthesis not balanced\n";
+    }
+}
 ?>

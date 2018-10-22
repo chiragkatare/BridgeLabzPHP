@@ -127,7 +127,7 @@ class UnOrderedList{
     }
 
     /**
-     * Function to add the data in parameter at the start of linked list
+     * Function to add the data at the start of linked list
      * 
      * @param data the data to be added
      */
@@ -205,33 +205,64 @@ class UnOrderedList{
      * @return data which is removed
      */
     function pop(){
-        if($this->size()==0){
-            echo "empty";
-            return ;
-        }
-        if($this->head->next == null){
-            $this->head = null ;
+        try{
+            if($this->size()==0){
+                //throws exception when try to pop from epty list
+                throw new Exception("No Item To Pop ,Empty!!!!!!");
+            }
+            if($this->head->next == null){
+                $this->head = null ;
+                $this->size--;
+                return;
+            }
+            $node = $this->head ;
+            $prev ;
+            while($node->next!= null){
+                $prev = $node ;
+                $node = $node->next ;
+            }
+            $prev->next = null;
             $this->size--;
-            return;
         }
-        $node = $this->head ;
-        $prev ;
-        while($node->next!= null){
-            $prev = $node ;
-            $node = $node->next ;
+        catch(Exception $e){
+            echo "\n",$e->getMessage(),"\n";
         }
-        $prev->next = null;
-        $this->size--;
     }
-
-
-
-
-
-
-
-
-
+    function popPos($pos){
+        try{
+           if($pos<0&&$pos>$this->size()-1){
+               throw new Exception("Index Out Of Bound");
+               return;
+           }
+           else if($this->size()==0){
+               //throws exception when try to pop from empty list
+               throw new Exception("No Item To Pop ,Empty!!!!!!");
+           }
+           else if($pos == 0){
+               $data = $this->head->data;
+               $this->head = $this->head->next ;
+               $this->size--;
+               return $data;
+           }
+           else{
+               $count = 0 ;
+               $node = $this->head ;
+               $prev ;
+               while($pos!=$count){
+                   $prev = $node ;
+                   $node = $node->next ;
+                   $count++;
+               }
+               $data = $node->data;
+               $prev->next = $node->next ;
+               $this->size--;
+               return $data ;
+           }
+        }
+        catch(Exception $e){
+            echo "\n",$e->getMessage();
+        }
+   }
 }
 
 

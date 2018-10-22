@@ -24,6 +24,6 @@ class CheckAlgo{
         echo "binary searched in ".Utility::elapsedTime($start , $stop);  
     }
 }
-$arr = Utility::getIntArr();
+$arr = Utility::getStrArr();
 CheckAlgo::sort($arr);
 ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Helper Function containing methods to use in othere php class
+ * Helper class containing methods to use in other php class
  * @author chiragkatare
  * @version 2.0   
  * @since 15-10-2018
@@ -289,6 +289,7 @@ class Utility
 
     /**
      * Function to find squre root of a no using newtons method
+     * 
      * @param c the integer no of which to find square root 
      * @return c the value of square root
      */
@@ -349,6 +350,9 @@ class Utility
 
     /**
      * function to convert binary to decimal 
+     * 
+     * @param Binary integer to convert
+     * @return Integer the value of integer
      */
     static function binToDec($bin){
         $binArr = str_split($bin);

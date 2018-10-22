@@ -21,7 +21,7 @@ class Stack{
      * @return data the data last stored 
      */
     function pop(){
-        if($list->isEmpty()){
+        if($this->list->isEmpty()){
             echo "empty";
             return ;
         }
@@ -32,9 +32,13 @@ class Stack{
      * function to check if the stack is emtpty or not
      */
     function isEmpty(){
-        return $list->isEmpty();
+        return $this->list->isEmpty();
     }
 
+    /**
+     * function to return the size of thre stack
+     * @return size of the satch
+     */
     function size(){
         return $this->list->size();
     }
