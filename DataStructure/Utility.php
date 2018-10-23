@@ -324,10 +324,10 @@ class Utility
      * @return d0 the day of the week
      */
     static function dayOfWeek($d , $m , $y){
-        $y0 = floor($y - (14 - $m) / 12) +1 ;
-        $x = floor($y0 + $y0/4 - $y0/100 + $y0/400);
-        $m0 = ($m + 12 * floor(((14 - $m) / 12)) - 2);
-        $d0 = floor(($d + $x + floor((31*$m0) / 12)) % 7) ;
+        $y0 = floor($y - (14 - $m) / 12) ;
+        $x = floor($y0 + floor($y0/4) - floor($y0/100) + floor($y0/400));
+        $m0 = $m + 12 * floor((14 - $m) / 12) - 2 ;
+        $d0 = ($d + $x + floor((31*$m0) / 12)) % 7;
         return $d0;
     }
 
@@ -382,7 +382,7 @@ class Utility
     /**
      * function to read the file and return the array of words
      */
-    function readFile($fname){
+    static function readFile($fname){
         //opens the file if not found die by printing the error "unable to open file"
         $file = fopen($fname ,"r") or die("Unable to open file ");
         //reads the file and save the contents in the string
@@ -391,8 +391,14 @@ class Utility
         return $contents ;
     }
 
-
-
+    static function print2d($arr){
+        for($i = 0 ;$i<count($arr);$i++){
+            echo "\n";
+            for($j = 0 ;$j <count($arr[$i]);$j++){
+                echo $arr[$i][$j]."  ";
+            }
+        }
+    }
 
 
 
@@ -429,4 +435,5 @@ function balParethesis($exp){
         echo "Paranthesis not balanced\n";
     }
 }
+
 ?>
