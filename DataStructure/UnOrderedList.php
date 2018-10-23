@@ -228,6 +228,12 @@ class UnOrderedList{
             echo "\n",$e->getMessage(),"\n";
         }
     }
+
+    /**
+     * function to pop the element from the desired position
+     * 
+     * @throws Exception if list is empty
+     */
     function popPos($pos){
         try{
            if($pos<0&&$pos>$this->size()-1){

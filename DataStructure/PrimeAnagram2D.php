@@ -1,7 +1,23 @@
 <?php
+/**
+ * the Prime Number Program and store only the numbers in that range that are Anagrams.
+ * 
+ * @author chiragkatare
+ */
+
+ //require function in the php file to work 
 require("Utility.php");
+
+/**
+ * Function to get the prime numbers from 0 o range 
+ * 
+ * @param range the range till which to find the prime numbers
+ * @return array array of prime numbers
+ */
 function getprime($range){
+    //array to store prime no
     $prime = [] ;
+    //variacle to set index
     $count= 0;
     for ($i=2; $i < $range ; $i++) { 
         if(Utility::isprime($i)){
@@ -10,6 +26,10 @@ function getprime($range){
     }
     return $prime;
 }
+
+/**
+ * function to get the index to store number in specified place
+ */
 function getIndex($numb){
     $num = $numb;
     if($num<100){
@@ -20,6 +40,10 @@ function getIndex($numb){
     }
     return $num ;
 }
+
+/**
+ * Function to run and test the other functions in the file
+ */
 function primeRun(){
     $primeArr = getPrime(1000);
     $anagram = [] ;
@@ -32,7 +56,9 @@ function primeRun(){
             }
         }
     }
+    //@d array to store the values 
     $array2d = [] ;
+    //pushing two arrays in the 2d arrays
     array_push($array2d , $anagram);
     array_push($array2d ,array_diff($primeArr , $anagram));
     echo "2D array stored is : ";
@@ -40,5 +66,6 @@ function primeRun(){
     echo "\n" ;
 }
 
+//calling the method
 primeRun();
 ?>
