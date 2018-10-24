@@ -47,23 +47,44 @@ function getIndex($numb){
 function primeRun(){
     $primeArr = getPrime(1000);
     $anagram = [] ;
-    $count= 0;
+    $nonAnagram = [] ;
     for ($i=0; $i < count($primeArr); $i++) {
         for ($j=0; $j < count($primeArr) ; $j++) { 
-            if(Utility::isAnagram($primeArr[$i], $primeArr[$j]))
-            {
-                $anagram[$count++] = $primeArr[$j] ;
+            if($i!=$j){
+                if($b = Utility::isAnagram($primeArr[$i], $primeArr[$j]))
+                {
+                    array_push($anagram , $primeArr[$i]);
+                    break ;
+                }
             }
+        }
+        if(!$b){
+            array_push($nonAnagram , $primeArr[$i]) ;
         }
     }
     //@d array to store the values 
     $array2d = [] ;
     //pushing two arrays in the 2d arrays
     array_push($array2d , $anagram);
-    array_push($array2d ,array_diff($primeArr , $anagram));
+    array_push($array2d ,$nonAnagram);
     echo "2D array stored is : ";
-    Utility::print2d($array2d);
+    print2d($array2d);
     echo "\n" ;
+}
+
+function print2d($arr){
+    for($i = 0 ;$i<count($arr);$i++){
+        if($i==1){
+            echo"\n\nNon-Anagrams";
+        }
+        else {
+            echo "Anagrams ; \n";
+        }
+        echo "\n";
+        for($j = 0 ;$j <count($arr[$i]);$j++){
+            echo $arr[$i][$j].",";
+        }
+    }
 }
 
 //calling the method

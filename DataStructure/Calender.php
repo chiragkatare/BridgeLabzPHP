@@ -18,8 +18,18 @@ function calender(){
     //Taking Month And Year
     echo "Enter Month ";
     $month = Utility::getInt();
+    //validating
+    while($month>12){
+        echo "enter correct month ";
+        $month = Utility::getInt();
+    }
     echo "Enter Year ";
     $year = Utility::getInt();
+    //validating
+    while($year<1000){
+        echo "enter correct year ";
+        $year = Utility::getInt();
+    }
     //initializing 2D aray
     $cal = initArray();
     //Calculating the staarting day of the month

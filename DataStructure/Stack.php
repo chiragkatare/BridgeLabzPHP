@@ -15,6 +15,10 @@ class Stack{
         $this->list->append($data);
     }
 
+    function __toString(){
+        return $this->list->__toString();
+    }
+
     /**
      * Function to remove the data from the stack 
      * 

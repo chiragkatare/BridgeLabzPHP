@@ -134,9 +134,11 @@ class Utility
                 
             }
             if(count($arr2)==0){
+                echo "true";
                 return true ;
             }
             else{
+                echo "false";
                 return false ;
             }
         }

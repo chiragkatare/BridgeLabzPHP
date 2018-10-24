@@ -211,9 +211,10 @@ class UnOrderedList{
                 throw new Exception("No Item To Pop ,Empty!!!!!!");
             }
             if($this->head->next == null){
+                $data = $this->head->data;
                 $this->head = null ;
                 $this->size--;
-                return;
+                return $data ;
             }
             $node = $this->head ;
             $prev ;
@@ -221,8 +222,10 @@ class UnOrderedList{
                 $prev = $node ;
                 $node = $node->next ;
             }
+            $ret = $node->data ;
             $prev->next = null;
             $this->size--;
+            return $ret;
         }
         catch(Exception $e){
             echo "\n",$e->getMessage(),"\n";

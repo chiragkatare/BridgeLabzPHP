@@ -7,7 +7,7 @@
 
  //require functions and classes in below files to works
 require("Utility.php");
-require("Queue.php");
+require("Stack.php");
 
 class WeekDay{
 
@@ -26,8 +26,8 @@ class WeekDay{
 /**
  * Function to Run the calender Usind Queue
  */
-function calQueue(){
-    $que = new Queue();
+function calStack(){
+    $stack = new Stack();
     //taking input with validation
     echo "Enter Month ";
     $month = Utility::getInt();
@@ -42,26 +42,37 @@ function calQueue(){
         $year = Utility::getInt();
     }
     $totalDays = calTotal($month , $year);
+    //checking the day at which month start and storin it in var start
     $start = Utility::dayOfWeek(1,$month, $year);
     $count = 1 ;
     $days = explode(" ","Sun   Mon   Tue   Wed   Thu   Fri   Sat");
+    //storing blank
     for ($i=0; $i <= $start; $i++) { 
-        $que->enqueue(new WeekDay($days[$i]," "));
+        $stack->push(new WeekDay($days[$i]," "));
     }
+    //storing proper days from $var start
     for ($i=0; $i < $totalDays ; $i++) { 
-        $que->enqueue(new WeekDay($days[$start%7],$count++));
+        $stack->push(new WeekDay($days[$start%7],$count++));
+        //incrementing start for next day
         $start++;
     }
-    printCalQ($que);
+    echo $stack->size()."\n";
+    
+    $stack2= new Stack();
+    while(!$stack->isEmpty()){
+        $stack2->push($stack->pop());
+    }
+    printCalStack($stack2);
+    echo $stack2->size()."\n";
 }
 
 /**
  * Function to print the queue in form of calender
  */
-function printCalQ($que){
+function printCalStack($stack){
     echo "Sun   Mon   Tue   Wed   Thu   Fri   Sat\n";
-    for ($i=0; !$que->isEmpty() ; $i++) { 
-        $w = $que->dequeue();
+    for ($i=0; !$stack->isEmpty() ; $i++) { 
+        $w = $stack->pop();
         if($w->date<10){
             echo "$w->date"."     ";
         }
@@ -102,5 +113,5 @@ function calTotal($month , $year){
 /**
  * calling the function to test
  */
-calQueue();
+calStack();
 ?>

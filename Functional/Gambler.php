@@ -16,6 +16,10 @@ class Gambler{
         $stack = Utility::getInt();
         echo "enter goal ";
         $goal = Utility::getInt();
+        if($stack>$goal){
+            echo "Stack is greater than goal\n";
+            die(); 
+        }
         echo "enter times to play ";
         $times = Utility::getInt();
         $bets = 0 ;
