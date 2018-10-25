@@ -54,7 +54,7 @@ class Utility
     static function getString(){
             fscanf(STDIN,"%s\n",$val);
             while(!is_string($val)){
-                echo "ivalid input try again";
+                echo "ivalid input try again\n";
                 fscanf(STDIN,"%s\n",$val);
             }
              return $val ;
