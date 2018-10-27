@@ -1,4 +1,6 @@
+class to store data stru
 <?php
+
 
 /**
  * set top level error handler function to handle in case of error occurence
@@ -13,6 +15,8 @@ set_error_handler(function ($errno, $errstr, $error_file, $error_line) {
 });
 
 //require teh files from the below files
+require("/home/bridgelabz/Chirag/BridgeLabzPHP/DataStructure/Stack.php");
+require("/home/bridgelabz/Chirag/BridgeLabzPHP/DataStructure/Queue.php");
 require("Utility.php");
 
 /**
@@ -46,6 +50,34 @@ class Stock
         $this->quantity = $quantity;
     }
 }
+
+class StockAccount
+{
+    private $account;
+    private $stack;
+    private $queue;
+
+    public function __construct($account = [] , Stack $stack , Queue $queue)
+    {
+        $this->account = $account ;
+        $this->stack = $stack;
+        $this->queue = $queue; 
+    }
+    function getAccount()
+    {
+        return $this->account;
+    }
+    function getStack()
+    {
+        return $this->stack;
+    }
+    function getQueue()
+    {
+        return $this->queue;
+    }
+}
+
+var_dump(new StockAccount());
 
 /**
  * funtion to but stocks from the list and add it to the account
@@ -191,5 +223,5 @@ function printStockList()
 //checking the user account
 $account = json_decode(file_get_contents("Account.json"));
 //calling the user input
-menu($account);
+//menu($account);
 ?>

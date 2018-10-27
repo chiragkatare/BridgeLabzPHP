@@ -8,7 +8,7 @@
  * @since 19-10-2018
  */
 
-require("Node.php");
+require_once("Node.php");
 
 class UnOrderedList
 {

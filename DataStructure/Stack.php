@@ -7,7 +7,7 @@ class Stack
     private $list;
 
     //constructor for initializing the values
-    function __construct()
+    public function __construct()
     {
         $this->list = new UnOrderedList();
     }
