@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Amazon",
+        "price": 122
+    },
+    {
+        "name": "Apple",
+        "price": 213
+    },
+    {
+        "name": "DML",
+        "price": 122
+    },
+    {
+        "name": "LML",
+        "price": 454
+    },
+    {
+        "name": "TVS",
+        "price": 457
+    },
+    {
+        "name": "BAJAJ",
+        "price": 565
+    },
+    {
+        "name": "SOLO",
+        "price": 99
+    },
+    {
+        "name": "jugj",
+        "price": 45
+    }
+]

@@ -8,75 +8,81 @@
  * @since 19-10-2018
  */
 
- require("Node.php");
+require("Node.php");
 
-class UnOrderedList{
+class UnOrderedList
+{
 
     //head to hold the starting node
-    public $head ;
+    public $head;
 
     //tail to hold the ending node 
-    private $tail ; 
+    private $tail; 
 
     //size to hold the value of size of linked list
-    private $size = 0 ; 
+    private $size = 0;
 
     /**
      * To string overriden to print the values in list
      */
-    function __toString(){
+    function __toString()
+    {
         $s = "{ ";
-        $node = $this->head ;
-        While($node !=null){
-            $s.=$node->data."," ;
-            $node = $node->next ;
+        $node = $this->head;
+        while ($node != null) {
+            $s .= $node->data . ",";
+            $node = $node->next;
         }
-         $s = substr($s, 0, -1);
-        return $s." }";
+        $s = substr($s, 0, -1);
+        return $s . " }";
     }
 
-    function getString(){
+    function getString()
+    {
         $s = "";
-        $node = $this->head ;
-        While($node !=null){
-            $s.=$node->data." " ;
-            $node = $node->next ;
+        $node = $this->head;
+        while ($node != null) {
+            $s .= $node->data . " ";
+            $node = $node->next;
         }
-         $s = substr($s, 0, -1);
-        return $s ;
+        $s = substr($s, 0, -1);
+        return $s;
     }
 
     /**
      * function to return the size of linked list
      */
-    function size(){
+    function size()
+    {
         return $this->size;
     }
 
     /**
      * function to check if the list is empty or not 
      */
-    function isEmpty(){
-        return $this->head === null ;
+    function isEmpty()
+    {
+        return $this->head === null;
     }
 
     /**
      * Function to add data at the end of the list 
      */
-    function append($data){
+    function append($data)
+    {
         //creatin new node with data 
         $temp = new Node($data);
         //checking if the list is empty and if it will add at the start
-        if($this->isEmpty()){
+        if ($this->isEmpty()) {
             $this->head = $temp;
-            $this->head->next = $this->tail ;
+            $this->head->next = $this->tail;
         }
         //or else it will add at the end 
-        else{
-            $node = $this->head ;
+        else {
+            $node = $this->head;
             //traversing to the last node 
-            while($node->next!=null){
-                $node = $node->next ;
+            while ($node->next != null) {
+                $node = $node->next;
             }
             $node->next = $temp;
         } 
@@ -87,26 +93,25 @@ class UnOrderedList{
     /**
      * function to remove the data given as argument removes only if data is there 
      */
-    function remove($data){
-       if($this->isEmpty()){
-           echo "list empty ";
-           return ;
-       }
-       else if($this->head->data==$data){
-           $this->head = $this->head->next ;
-           $this->size--;
-           return;
-       }
-       else{
-        $node = $this->head ;
-        $prev ;
-        while($node->data !== $data ){
-            $prev = $node ; 
-            $node = $node->next ;
+    function remove($data)
+    {
+        if ($this->isEmpty()) {
+            echo "list empty ";
+            return;
+        } else if ($this->head->data == $data) {
+            $this->head = $this->head->next;
+            $this->size--;
+            return;
+        } else {
+            $node = $this->head;
+            $prev;
+            while ($node->data !== $data) {
+                $prev = $node;
+                $node = $node->next;
+            }
+            $prev->next = $node->next;
+            $this->size--;
         }
-        $prev->next = $node->next ;
-        $this->size--;
-       }
     }
 
     /**
@@ -115,15 +120,16 @@ class UnOrderedList{
      * 
      * @return Boolean True if found and false if not found
      */
-    function search($data){
-        $node = $this->head ;
-        while($node->data!=null){
-            if($node->data == $data){
-                return true ;
+    function search($data)
+    {
+        $node = $this->head;
+        while ($node->data != null) {
+            if ($node->data == $data) {
+                return true;
             }
-            $node = $node->next ;
+            $node = $node->next;
         }
-        return false ;
+        return false;
     }
 
     /**
@@ -131,17 +137,17 @@ class UnOrderedList{
      * 
      * @param data the data to be added
      */
-    function add($data){
+    function add($data)
+    {
         $temp = new Node($data);
-        if($this->isEmpty()){
+        if ($this->isEmpty()) {
             $this->head = $temp;
-            $this->head->next = $this->tail ;
+            $this->head->next = $this->tail;
+        } else {
+            $temp->next = $this->head;
+            $this->head = $temp;
         }
-        else{
-            $temp->next = $this->head ;
-            $this->head = $temp ;
-        } 
-        $this->size++;  
+        $this->size++;
     }
 
     /**
@@ -149,19 +155,19 @@ class UnOrderedList{
      * @param data $data the data which to give the index
      * @return the index of the data 
      */
-    function index($data){
-        if($this->search($data)===false){
-            return false ;
-        }
-        else{
+    function index($data)
+    {
+        if ($this->search($data) === false) {
+            return false;
+        } else {
             $node = $this->head;
-            $index = 0 ;
-            while ($node->data!==$data) {
-                $node = $node->next ;
+            $index = 0;
+            while ($node->data !== $data) {
+                $node = $node->next;
                 $index++;
             }
-        return $index ;
-    }
+            return $index;
+        }
     }
 
     /**
@@ -169,30 +175,30 @@ class UnOrderedList{
      * @param pos the position / index at which to insert the data 
      * @param data the data which to insert
      */
-    function insert($pos , $data){
+    function insert($pos, $data)
+    {
         //checks if the index is correct
-        if($pos<0&&$pos>$this->size()){
+        if ($pos < 0 && $pos > $this->size()) {
             echo "wrong position ";
             return;
         }
         // checks if the index is 0 ie head
-        else if($pos === 0 ){
+        else if ($pos === 0) {
             $this->add($data);
             return;
         }
         //checks if index is the last value
-        else if($pos==$this->size()){
+        else if ($pos == $this->size()) {
             $this->append($data);
-            return ;
-        }
-        else{
-            $node = $this->head ;
+            return;
+        } else {
+            $node = $this->head;
             $temp = new Node($data);
-            for ($i=0; $i < $pos-1 ; $i++) { 
-                   $node = $node->next ;
+            for ($i = 0; $i < $pos - 1; $i++) {
+                $node = $node->next;
             }
-            $n = $node->next ;
-            $node->next = $temp ;
+            $n = $node->next;
+            $node->next = $temp;
             $temp->next = $n;
             $this->size++;
         }
@@ -204,31 +210,31 @@ class UnOrderedList{
      * 
      * @return data which is removed
      */
-    function pop(){
-        try{
-            if($this->size()==0){
+    function pop()
+    {
+        try {
+            if ($this->size() == 0) {
                 //throws exception when try to pop from epty list
                 throw new Exception("No Item To Pop ,Empty!!!!!!");
             }
-            if($this->head->next == null){
+            if ($this->head->next == null) {
                 $data = $this->head->data;
-                $this->head = null ;
+                $this->head = null;
                 $this->size--;
-                return $data ;
+                return $data;
             }
-            $node = $this->head ;
-            $prev ;
-            while($node->next!= null){
-                $prev = $node ;
-                $node = $node->next ;
+            $node = $this->head;
+            $prev;
+            while ($node->next != null) {
+                $prev = $node;
+                $node = $node->next;
             }
-            $ret = $node->data ;
+            $ret = $node->data;
             $prev->next = null;
             $this->size--;
             return $ret;
-        }
-        catch(Exception $e){
-            echo "\n",$e->getMessage(),"\n";
+        } catch (Exception $e) {
+            echo "\n", $e->getMessage(), "\n";
         }
     }
 
@@ -237,41 +243,38 @@ class UnOrderedList{
      * 
      * @throws Exception if list is empty
      */
-    function popPos($pos){
-        try{
-           if($pos<0&&$pos>$this->size()-1){
-               throw new Exception("Index Out Of Bound");
-               return;
-           }
-           else if($this->size()==0){
+    function popPos($pos)
+    {
+        try {
+            if ($pos < 0 && $pos > $this->size() - 1) {
+                throw new Exception("Index Out Of Bound");
+                return;
+            } else if ($this->size() == 0) {
                //throws exception when try to pop from empty list
-               throw new Exception("No Item To Pop ,Empty!!!!!!");
-           }
-           else if($pos == 0){
-               $data = $this->head->data;
-               $this->head = $this->head->next ;
-               $this->size--;
-               return $data;
-           }
-           else{
-               $count = 0 ;
-               $node = $this->head ;
-               $prev ;
-               while($pos!=$count){
-                   $prev = $node ;
-                   $node = $node->next ;
-                   $count++;
-               }
-               $data = $node->data;
-               $prev->next = $node->next ;
-               $this->size--;
-               return $data ;
-           }
+                throw new Exception("No Item To Pop ,Empty!!!!!!");
+            } else if ($pos == 0) {
+                $data = $this->head->data;
+                $this->head = $this->head->next;
+                $this->size--;
+                return $data;
+            } else {
+                $count = 0;
+                $node = $this->head;
+                $prev;
+                while ($pos != $count) {
+                    $prev = $node;
+                    $node = $node->next;
+                    $count++;
+                }
+                $data = $node->data;
+                $prev->next = $node->next;
+                $this->size--;
+                return $data;
+            }
+        } catch (Exception $e) {
+            echo "\n", $e->getMessage();
         }
-        catch(Exception $e){
-            echo "\n",$e->getMessage();
-        }
-   }
+    }
 }
 
 

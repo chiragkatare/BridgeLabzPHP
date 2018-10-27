@@ -15,11 +15,12 @@ require("Utility.php");
  * Function to get the prime no between 0-$range 
  * @param range the range between which to find the numbers
  */
-function getprime($range){
-    $prime = [] ;
-    $count= 0;
-    for ($i=2; $i < $range ; $i++) { 
-        if(Utility::isprime($i)){
+function getprime($range)
+{
+    $prime = [];
+    $count = 0;
+    for ($i = 2; $i < $range; $i++) {
+        if (Utility::isprime($i)) {
             $prime[$count++] = $i;
         }
     }
@@ -32,40 +33,43 @@ function getprime($range){
  * @param number the number for which to find the index of array
  * @return index the index at which to store the array
  */
-function getIndex($numb){
+function getIndex($numb)
+{
     $num = $numb;
-    if($num<100){
+    if ($num < 100) {
         return 0;
     }
-    while($num>9){
-        $num = floor($num/10);
+    while ($num > 9) {
+        $num = floor($num / 10);
     }
-    return $num ;
+    return $num;
 }
 
 /**
  * Function to run and test the above functions and run the programs
  */
-function primeRun(){
+function primeRun()
+{
     $primeArr = getPrime(1000);
     $prime2d = get2d();
-    for ($i=0; $i < count($primeArr); $i++) { 
+    for ($i = 0; $i < count($primeArr); $i++) {
         $index = getIndex($primeArr[$i]);
-        $prime2d[$index][count($prime2d[$index])]= $primeArr[$i];
+        $prime2d[$index][count($prime2d[$index])] = $primeArr[$i];
     }
     echo "2D array stored is :";
     Utility::print2d($prime2d);
-    echo "\n" ;
+    echo "\n";
 }
 
 /**
  * Function to give a 2d array of size 10
  */
-function get2d(){
+function get2d()
+{
     $arr = [];
-    for($i = 0 ;$i<10;$i++){
+    for ($i = 0; $i < 10; $i++) {
         $aa = array();
-        array_push($arr , $aa);
+        array_push($arr, $aa);
     }
     return $arr;
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Create a Slot of 10 to store Chain of Numbers that belong to each Slot to efficiently search a 
  * number from a given set of number
@@ -13,42 +14,44 @@ require("OrderedList.php");
  * @param Integer the value which to find the hash value
  * @return hash the hash index of the number
  */
-function hashv($value){
-    return $value%10;
+function hashv($value)
+{
+    return $value % 10;
 }
 
 /**
  * function to initialize the list array 
  * @return Array the array containg 10 list objects
  */
-function initList(){
+function initList()
+{
     $arr = [];
-    for ($i=0; $i < 10; $i++) { 
-        $arr[$i] = new OrderedList();   
+    for ($i = 0; $i < 10; $i++) {
+        $arr[$i] = new OrderedList();
     }
-    return $arr ;
+    return $arr;
 }
 
 /**
  * Function to  run the program and perform hashing and print output to the user
  */
-function hashing(){
+function hashing()
+{
     $list = initList();
-    $numbers = explode(" ",Utility::readFile("number.txt"));
+    $numbers = explode(" ", Utility::readFile("number.txt"));
     print_r($numbers);
-    for ($i=0; $i <count($numbers) ; $i++) {
-        $l = (int)$numbers[$i]%10;
+    for ($i = 0; $i < count($numbers); $i++) {
+        $l = (int)$numbers[$i] % 10;
         $list[$l]->add((int)$numbers[$i]);
-        }
-        echo "list : ".showList($list);;
+    }
+    echo "list : " . showList($list);;
     echo "Enter no to search\n";
-    $num = Utility::getInt(); 
-    $l = (int)$num%10;
-    if($list[$l]->search($num)){
+    $num = Utility::getInt();
+    $l = (int)$num % 10;
+    if ($list[$l]->search($num)) {
         echo "Number found\nRemoving......\n";
         $list[$l]->remove($num);
-    }
-    else{
+    } else {
         echo "Number Not Found\nAdding......\n";
         $list[$l]->add($num);
     }
@@ -58,9 +61,10 @@ function hashing(){
 /**
  * Function to write string in to a file 
  */
-function writeFile($list){
-    $file = fopen("number.txt" ,"w") or die("Unable to open file ");
-        fwrite($file ,showList($list));
+function writeFile($list)
+{
+    $file = fopen("number.txt", "w") or die("Unable to open file ");
+    fwrite($file, showList($list));
 }
 
 /**
@@ -69,12 +73,13 @@ function writeFile($list){
  * @param List the list which has values
  * @return String the value of thenlist as a string
  */
-function showList($list){
-    $s = "" ;
-    for ($i=0; $i <count($list) ; $i++) { 
-        $s.= $list[$i]->getString()." ";
+function showList($list)
+{
+    $s = "";
+    for ($i = 0; $i < count($list); $i++) {
+        $s .= $list[$i]->getString() . " ";
     }
-    return $s."\n" ;
+    return $s . "\n";
 }
 
 //calling the method

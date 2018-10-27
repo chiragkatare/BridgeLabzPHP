@@ -9,50 +9,53 @@
  * @since 15-10-2018
  */
 require("Utility.php");
-class Anagram{
+class Anagram
+{
 
     /**
      * function to take user inputs and check the strings are anagrams or not
      */
-    static function isAnagram(){
+    static function isAnagram()
+    {
         echo "Enter first word ";
         //Calling method in utility class to input string
         $s1 = Utility::getString();
         echo "enter second word ";
         $s2 = Utility::getString();
         //function in anagram to check for anagram and print result accordingly
-        if(Utility::isAnagram($s1 ,$s2)){
+        if (Utility::isAnagram($s1, $s2)) {
             echo "anagrams";
-        }
-        else{
-            echo"Not Anagram";
+        } else {
+            echo "Not Anagram";
         }
     }
 
     /**functio tofind the prime no bw 0 to 1000
      * @return array of prime number
      */
-    static function prime1000(){
-            $prime = array();
-            $s = 0 ;
-            for($i = 0 ;$i <1000 ; $i++){
-                if(Utility::isPrime($i)){
-                    $prime[$s++]= $i;
-                }
+    static function prime1000()
+    {
+        $prime = array();
+        $s = 0;
+        for ($i = 0; $i < 1000; $i++) {
+            if (Utility::isPrime($i)) {
+                $prime[$s++] = $i;
             }
-            return $prime ;
         }
+        return $prime;
+    }
 
-        /**
-         * function to find the prime no which also anagrams bw 0 to 1000
-         */
-    static function primeAnagrams($prime){
+    /**
+     * function to find the prime no which also anagrams bw 0 to 1000
+     */
+    static function primeAnagrams($prime)
+    {
         $n = count($prime);
-        for($i = 0 ;$i <$n ; $i++){
-            for($j = 0 ;$j <$n ; $j++){
-                if($i!=$j){
-                    if(Utility::isAnagram((string)$prime[$i],(string)$prime[$j])){
-                        echo $prime[$i]." ".$prime[$j]."\n";
+        for ($i = 0; $i < $n; $i++) {
+            for ($j = 0; $j < $n; $j++) {
+                if ($i != $j) {
+                    if (Utility::isAnagram((string)$prime[$i], (string)$prime[$j])) {
+                        echo $prime[$i] . " " . $prime[$j] . "\n";
                     }
                 }
             }
@@ -60,7 +63,8 @@ class Anagram{
     }   
 
         //main function to test the above function
-    static function main(){
+    static function main()
+    {
         self::primeAnagrams(self::prime1000());
     }
 }

@@ -1,21 +1,25 @@
 <?php
 include("UnOrderedList.php");
-class Stack{
+class Stack
+{
 
     //creting the list to store stack values
-    private $list ;
+    private $list;
 
     //constructor for initializing the values
-    function __construct(){
+    function __construct()
+    {
         $this->list = new UnOrderedList();
     }
 
     //function to push the data in the stack 
-    function push($data){
+    function push($data)
+    {
         $this->list->append($data);
     }
 
-    function __toString(){
+    function __toString()
+    {
         return $this->list->__toString();
     }
 
@@ -24,18 +28,20 @@ class Stack{
      * 
      * @return data the data last stored 
      */
-    function pop(){
-        if($this->list->isEmpty()){
+    function pop()
+    {
+        if ($this->list->isEmpty()) {
             echo "empty";
-            return ;
+            return;
         }
-       return $this->list->pop();
+        return $this->list->pop();
     }
-    
+
     /**
      * function to check if the stack is emtpty or not
      */
-    function isEmpty(){
+    function isEmpty()
+    {
         return $this->list->isEmpty();
     }
 
@@ -43,7 +49,8 @@ class Stack{
      * function to return the size of thre stack
      * @return size of the satch
      */
-    function size(){
+    function size()
+    {
         return $this->list->size();
     }
 }

@@ -8,84 +8,88 @@
  * @since 19-10-2018
  */
 
- require("Node.php");
+require("Node.php");
 
-class OrderedList{
+class OrderedList
+{
 
     //head to hold the starting node
-    public $head ;
+    public $head;
 
     //tail to hold the ending node 
-    private $tail ; 
+    private $tail; 
 
     //size to hold the value of size of linked list
-    private $size = 0 ; 
+    private $size = 0;
 
     /**
      * To string overriden to print the values in list
      */
-    function __toString(){
+    function __toString()
+    {
         $s = "{ ";
-        $node = $this->head ;
-        While($node !=null){
-            $s.=$node->data."," ;
-            $node = $node->next ;
+        $node = $this->head;
+        while ($node != null) {
+            $s .= $node->data . ",";
+            $node = $node->next;
         }
-         $s = substr($s, 0, -1);
-        return $s." }";
+        $s = substr($s, 0, -1);
+        return $s . " }";
     }
 
     /**
      * function to get the elements of list as string
      */
-    function getString(){
+    function getString()
+    {
         $s = "";
-        $node = $this->head ;
-        While($node !=null){
-            $s.=$node->data." " ;
-            $node = $node->next ;
+        $node = $this->head;
+        while ($node != null) {
+            $s .= $node->data . " ";
+            $node = $node->next;
         }
-         $s = substr($s, 0, -1);
-        return $s ;
+        $s = substr($s, 0, -1);
+        return $s;
     }
 
     /**
      * function to return the size of linked list
      */
-    function size(){
+    function size()
+    {
         return $this->size;
     }
 
     /**
      * function to check if the list is empty or not 
      */
-    function isEmpty(){
-        return $this->head === null ;
+    function isEmpty()
+    {
+        return $this->head === null;
     }
 
     /**
      * function to remove the data given as argument removes only if data is there 
      */
-    function remove($data){
-       if($this->isEmpty()){
-           echo "list empty ";
-           return ;
-       }
-       else if($this->head->data==$data){
-           $this->head = $this->head->next ;
-           $this->size--;
-           return;
-       }
-       else{
-        $node = $this->head ;
-        $prev ;
-        while($node->data !== $data ){
-            $prev = $node ; 
-            $node = $node->next ;
+    function remove($data)
+    {
+        if ($this->isEmpty()) {
+            echo "list empty ";
+            return;
+        } else if ($this->head->data == $data) {
+            $this->head = $this->head->next;
+            $this->size--;
+            return;
+        } else {
+            $node = $this->head;
+            $prev;
+            while ($node->data !== $data) {
+                $prev = $node;
+                $node = $node->next;
+            }
+            $prev->next = $node->next;
+            $this->size--;
         }
-        $prev->next = $node->next ;
-        $this->size--;
-       }
     }
 
     /**
@@ -94,15 +98,16 @@ class OrderedList{
      * 
      * @return Boolean True if found and false if not found
      */
-    function search($data){
-        $node = $this->head ;
-        while($node!=null){
-            if($node->data == $data){
-                return true ;
+    function search($data)
+    {
+        $node = $this->head;
+        while ($node != null) {
+            if ($node->data == $data) {
+                return true;
             }
-            $node = $node->next ;
+            $node = $node->next;
         }
-        return false ;
+        return false;
     }
 
     /**
@@ -110,38 +115,39 @@ class OrderedList{
      * 
      * @param data the data to be added
      */
-    function add($data){
+    function add($data)
+    {
         $temp = new Node($data);
         //check if list is empty
-        if($this->isEmpty()){
+        if ($this->isEmpty()) {
             //add at first ie head;
             $this->head = $temp;
-            $this->head->next = $this->tail ;
+            $this->head->next = $this->tail;
         }
         //check id data is less than the data in head
-        else if($this->head->data>$data){
-            $temp->next = $this->head ;
-            $this->head = $temp ;
+        else if ($this->head->data > $data) {
+            $temp->next = $this->head;
+            $this->head = $temp;
         }
         //stores in desired position
-        else{
-            $node = $this->head ; 
-            $prev ;
-            while($node!=null){
-                if($data < $node->data){
-                    $prev->next = $temp ;
-                    $temp->next = $node ;
+        else {
+            $node = $this->head;
+            $prev;
+            while ($node != null) {
+                if ($data < $node->data) {
+                    $prev->next = $temp;
+                    $temp->next = $node;
                     $this->size++;
-                    return ;
+                    return;
                 }
-                $prev = $node ;
-                $node = $node->next ;
+                $prev = $node;
+                $node = $node->next;
             }
-            $prev->next = $temp ;
-            
+            $prev->next = $temp;
+
         } 
         //incrementing size
-        $this->size++;  
+        $this->size++;
     }
 
     /**
@@ -149,19 +155,19 @@ class OrderedList{
      * @param data $data the data which to give the index
      * @return the index of the data 
      */
-    function index($data){
-        if($this->search($data)===false){
-            return false ;
-        }
-        else{
+    function index($data)
+    {
+        if ($this->search($data) === false) {
+            return false;
+        } else {
             $node = $this->head;
-            $index = 0 ;
-            while ($node->data!==$data) {
-                $node = $node->next ;
+            $index = 0;
+            while ($node->data !== $data) {
+                $node = $node->next;
                 $index++;
             }
-        return $index ;
-    }
+            return $index;
+        }
     }
 
     /**
@@ -169,28 +175,28 @@ class OrderedList{
      * 
      * @return data which is removed
      */
-    function pop(){
-        try{
-            if($this->size()==0){
+    function pop()
+    {
+        try {
+            if ($this->size() == 0) {
                 echo "empty";
                 throw new Exception("No Item To Pop ,Empty!!!!!!");
             }
-            if($this->head->next == null){
-                $this->head = null ;
+            if ($this->head->next == null) {
+                $this->head = null;
                 $this->size--;
                 return;
             }
-            $node = $this->head ;
-            $prev ;
-            while($node->next!= null){
-                $prev = $node ;
-                $node = $node->next ;
+            $node = $this->head;
+            $prev;
+            while ($node->next != null) {
+                $prev = $node;
+                $node = $node->next;
             }
             $prev->next = null;
             $this->size--;
-        }
-        catch(Exception $e){
-            echo "\n",$e->getMessage(),"\n";
+        } catch (Exception $e) {
+            echo "\n", $e->getMessage(), "\n";
         }
     }
 

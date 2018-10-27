@@ -1,4 +1,5 @@
 <?php
+
 /**
  * program that takes the month and year as command-line arguments and prints the Calendar of the month
  * Using Queue
@@ -9,47 +10,49 @@
 require("Utility.php");
 require("Queue.php");
 
-class WeekDay{
+class WeekDay
+{
 
     /**
      * Constructor for class WeekDay
      */
-    function __construct($day ,$date)
+    function __construct($day, $date)
     {
-        $this->date = $date ;
-        $this->day = $day ;
+        $this->date = $date;
+        $this->day = $day;
     }
-    public $day ;
-    public $date ;
+    public $day;
+    public $date;
 }
 
 /**
  * Function to Run the calender Usind Queue
  */
-function calQueue(){
+function calQueue()
+{
     $que = new Queue();
     //taking input with validation
     echo "Enter Month ";
     $month = Utility::getInt();
-    while($month>12){
+    while ($month > 12) {
         echo "enter correct month ";
         $month = Utility::getInt();
     }
     echo "Enter Year ";
     $year = Utility::getInt();
-    while($year<1000){
+    while ($year < 1000) {
         echo "enter correct year ";
         $year = Utility::getInt();
     }
-    $totalDays = calTotal($month , $year);
-    $start = Utility::dayOfWeek(1,$month, $year);
-    $count = 1 ;
-    $days = explode(" ","Sun   Mon   Tue   Wed   Thu   Fri   Sat");
-    for ($i=0; $i <= $start; $i++) { 
-        $que->enqueue(new WeekDay($days[$i]," "));
+    $totalDays = calTotal($month, $year);
+    $start = Utility::dayOfWeek(1, $month, $year);
+    $count = 1;
+    $days = explode(" ", "Sun   Mon   Tue   Wed   Thu   Fri   Sat");
+    for ($i = 0; $i <= $start; $i++) {
+        $que->enqueue(new WeekDay($days[$i], " "));
     }
-    for ($i=0; $i < $totalDays ; $i++) { 
-        $que->enqueue(new WeekDay($days[$start%7],$count++));
+    for ($i = 0; $i < $totalDays; $i++) {
+        $que->enqueue(new WeekDay($days[$start % 7], $count++));
         $start++;
     }
     printCalQ($que);
@@ -58,17 +61,17 @@ function calQueue(){
 /**
  * Function to print the queue in form of calender
  */
-function printCalQ($que){
+function printCalQ($que)
+{
     echo "Sun   Mon   Tue   Wed   Thu   Fri   Sat\n";
-    for ($i=0; !$que->isEmpty() ; $i++) { 
+    for ($i = 0; !$que->isEmpty(); $i++) {
         $w = $que->dequeue();
-        if($w->date<10){
-            echo "$w->date"."     ";
+        if ($w->date < 10) {
+            echo "$w->date" . "     ";
+        } else {
+            echo "$w->date" . "    ";
         }
-        else{
-            echo "$w->date"."    ";
-        }
-        if($i%7 == 6){
+        if ($i % 7 == 6) {
             echo "\n";
         }
     }
@@ -77,23 +80,22 @@ function printCalQ($que){
 /**
  * Function to calculate the total days in a month
  */
-function calTotal($month , $year){
-    if($month<8){
-        if($month%2==0){
-            if ($month==2){
-                if(Utility::isLeapYear($year)){
-                    return 29 ;
+function calTotal($month, $year)
+{
+    if ($month < 8) {
+        if ($month % 2 == 0) {
+            if ($month == 2) {
+                if (Utility::isLeapYear($year)) {
+                    return 29;
                 }
                 return 28;
             }
             return 30;
-        }
-        else{
+        } else {
             return 31;
         }
-    }
-    else{
-        if($month%2==0){
+    } else {
+        if ($month % 2 == 0) {
             return 31;
         }
         return 30;

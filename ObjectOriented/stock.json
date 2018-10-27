@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Amazon",
+        "price": 122,
+        "quantity": 56
+    },
+    {
+        "name": "Apple",
+        "price": 213,
+        "quantity": 65
+    },  
+    {
+        "name": "chirag",
+        "price": 122,
+        "quantity": 34
+    },
+    {
+        "name": "jugj",
+        "price": 45,
+        "quantity": 922
+    }
+]
