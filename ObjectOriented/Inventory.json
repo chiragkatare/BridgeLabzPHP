@@ -1,12 +1,17 @@
 [
     {
-        "name": "ghg",
-        "weight": 45,
-        "price": 54
+        "name": "Rice",
+        "weight": 25,
+        "price": 65
     },
     {
-        "name": "hkj",
-        "weight": 56,
-        "price": 85
+        "name": "Wheat",
+        "weight": 25,
+        "price": 98
+    },
+    {
+        "name": "Pulses",
+        "weight": 45,
+        "price": 68
     }
 ]

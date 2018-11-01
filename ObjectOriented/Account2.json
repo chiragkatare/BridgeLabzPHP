@@ -1,0 +1,15 @@
+{
+    "account": [
+        {
+            "name": "Apple",
+            "price": 213,
+            "quantity": 25
+        }
+    ],
+    "stack": [
+        " bought"
+    ],
+    "queue": [
+        "25 Appleshares bought at 12:46:12 Wed 31\/10\/18"
+    ]
+}

@@ -1,14 +1,19 @@
 <?php
-$a = 5 ;
-$ar = function ($int, $min, $max)
-{
-    while (filter_var($int, FILTER_VALIDATE_INT, array("options" => array("min_range" => $min, "max_range" => $max))) === false) {
-        echo ("Variable value is not within the legal range\n");
-        echo "enter again : ";
-        $int = Utility::getInt();
-    }
-    return $int;
-};
-$arr = json_encode($ar);
-file_put_contents("test.json",$arr);
+set_error_handler(function ($errno, $errstr, $error_file, $error_line) {
+    echo "!!!!Error Occured!!!!!!!\n";
+    echo "Error: [$errno] $errstr - $error_file:$error_line \n";
+    echo "Terminating!!!!!!!!!\n";
+
+    die();
+});
+
+/**
+ * Top level exception handler ;
+ * called aitomaticaly by php at exception occurence
+ */
+set_exception_handler(function ($e){
+    echo "\nException Occurred\n";
+    echo $e->getMessage();
+});
+vooh();
 ?>

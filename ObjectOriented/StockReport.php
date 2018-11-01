@@ -111,7 +111,7 @@ function add()
 {
     echo "Adding New Elements Selected\n";
     $portfolio = json_decode(file_get_contents("stock.json"));
-    print_r($portfolio);
+    //print_r($portfolio);
     portfolio($portfolio);
 }
 

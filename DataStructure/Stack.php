@@ -4,7 +4,7 @@ class Stack
 {
 
     //creting the list to store stack values
-    private $list;
+    public $list;
 
     //constructor for initializing the values
     public function __construct()

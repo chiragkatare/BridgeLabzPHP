@@ -1,10 +1,23 @@
 <?php
+
+
 /**
  * Create a JSON file having Inventory Details for Rice, Pulses and Wheats with properties name,
  * weight, price per kg.  Create the JSON from Inventory Object and output the JSON String
  * 
  * @author chiragkatare
  */
+
+ /**
+ * set top level error handler function to handle in case of error occurence
+ * 
+ */
+set_error_handler(function ($errno, $errstr, $error_file, $error_line) {
+    echo "!!!!Error Occured!!!!!!!\n";
+    echo "Error: [$errno] $errstr - $error_file:$error_line \n";
+    echo "Terminating!!!!!!!!!\n";
+    die();
+});
 
  //require funtion in the file below to work properly
 require("Utility.php");
@@ -36,7 +49,7 @@ class Inventory{
  * @return arr array of the objects 
  */
 function arrayObject(){
-    echo "Enter No Of Items In Inventory : ";
+   // echo "Enter No Of Items In Inventory : ";
     $name = ["Rice","Wheat","Pulses"];
     $arrObj = [];
     for ($i=0; $i < 3 ; $i++) { 

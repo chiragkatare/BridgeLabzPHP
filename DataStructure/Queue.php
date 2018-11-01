@@ -10,7 +10,7 @@ class Queue
     /**
      * list to store the element and implement linked list
      */
-    private $list;
+    public $list;
 
     /**
      * Constructor function to initialize the list 
