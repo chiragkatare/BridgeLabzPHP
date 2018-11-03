@@ -54,14 +54,14 @@ function getDeck()
     /**
      * no of suits in the deck
      */
-    $suits = ["Clubs", "Diamonds", "Hearts", "Spades"];
+    $suits = ["♣", "♦", "♥", "♠"];
     //no of ranks in the deck
     $rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
     //deck array  wth the empty value
     $deck = [];
     for ($i = 0; $i < count($suits); $i++) {
         for ($j = 0; $j < count($rank); $j++) {
-            //giving the values of cards in the deck array
+            //giving the values of cards in the deck array  
             $deck[$i][$j] = new card($suits[$i], $rank[$j]);
         }
     }

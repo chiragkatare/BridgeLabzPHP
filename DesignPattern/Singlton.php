@@ -1,16 +1,26 @@
 <?php 
+/**
+ * singleton class implementing single ton design patterns
+ */
 class Singleton
 {
+    //static instance of the class declared as protected
     protected static $instance;
 
+    //private constructor to force not creating object
     private function __construct()
     {
     }
 
+    //function to get instance of the class by lazy initilization
     public function gInstance()
     {
+        /**isset to check if the instance is already initialized ot not null 
+         * if its null then its going to initialize it or else its going to  
+         */
         if (!isset(self::$instance)) {
-            echo "helo\n\n\n\n\n";
+            //echo "helo\n\n\n\n\n";
+            //class variable to get the class name 
             $c = __class__;
             self::$instance = new $c;
               //  var_dump(self::$instance);
@@ -18,21 +28,39 @@ class Singleton
         return self::$instance;
     }
 
-    function helo()
+    //function to test initialization 
+    function hello()
     {
+        //prints echo to the screen
         echo "\nhello";
     }
 }
 
+/**
+ * function uses singleton to destroy the singleton pattern by not utilizing the singleton pattern
+ */
 function createInstanceWithoutConstructor($class)
 {
+    //gets class as a reflection class
     $reflector = new ReflectionClass($class);
+    //getting the properties of the class as an array
     $properties = $reflector->getProperties();
+    //getting the default properties of the class
     $defaults = $reflector->getDefaultProperties();
 
+    /**
+     * serializing object
+     * and then un serializing the object thus getting the object without invoking the constructor
+     */
     $serealized = "O:" . strlen($class) . ":\"$class\":" . count($properties) . ':{';
+        //looping throught the properties
     foreach ($properties as $property) {
+        //getting the name of the property
         $name = $property->getName();
+        //checking the property if its protected or not
+        /**
+         *  * for protected null for private
+         */
         if ($property->isProtected()) {
             $name = chr(0) . '*' . chr(0) . $name;
         } elseif ($property->isPrivate()) {
@@ -47,13 +75,14 @@ function createInstanceWithoutConstructor($class)
     }
     $serealized .= "}";
     echo $serealized;
+    //returning the unserialized object from serialized string
     return unserialize($serealized);
 }
 
 $newInst = createInstanceWithoutConstructor("Singleton");
 echo serialize($newInst);
-$oldinst =  Singleton::gInstance();
-echo spl_object_hash($oldinst) . "\n";
-echo spl_object_hash($newInst) . "\n";
+$oldinst = Singleton::gInstance();
+//to check the object from the reflection method
+print_r($oldinst);
 
 ?>

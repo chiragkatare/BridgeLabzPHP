@@ -29,6 +29,7 @@ class StopWatch{
         $i = fgets(STDIN);
         //get start time
         self :: $start = round(microtime(true)*1000);
+        
         echo"enter 2 to stop ";
         $i = fgets(STDIN);
         //get stop time
