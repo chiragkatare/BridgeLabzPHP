@@ -79,6 +79,7 @@ function createInstanceWithoutConstructor($class)
     return unserialize($serealized);
 }
 
+//destroting singleton with constructor
 $newInst = createInstanceWithoutConstructor("Singleton");
 echo serialize($newInst);
 $oldinst = Singleton::gInstance();

@@ -8,7 +8,7 @@
         "name": "Apple",
         "price": 213,
         "quantity": 65
-    },  
+    },
     {
         "name": "chirag",
         "price": 122,
@@ -18,5 +18,15 @@
         "name": "jugj",
         "price": 45,
         "quantity": 922
+    },
+    {
+        "name": "asss",
+        "price": 123,
+        "quantity": 12
+    },
+    {
+        "name": "abc",
+        "price": 1234,
+        "quantity": 12
     }
 ]

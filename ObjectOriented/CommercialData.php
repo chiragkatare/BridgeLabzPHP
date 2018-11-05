@@ -59,15 +59,22 @@ function buy($account)
     echo "Enter No with Stock To Buy : ";
     //var ch to store stock to buy
     $ch = validInt(Utility::getInt(), 1, 8);
-    echo $list[$ch - 1]->name . " selected!\nEnter No Of Shares To Buy of " . $list[$ch - 1]->name . " : ";
+    echo $list[$ch-1]->name . " selected!\nEnter No Of Shares To Buy of " . $list[$ch-1]->name . " : ";
     //amnt to store the no of shares to buy
-    $amnt = validInt(Utility::getInt(), 0, 90000);
+    $amnt = validInt(Utility::getInt(), 0, $list[$ch-1]->Quantity);
+    if($account[0]->account<($list[$ch-1]->price*$amnt)){
+        echo "insufficient fund\n";
+        menu();
+    }
+    $list[$ch-1]->Quantity -= $amnt;
+    saveList($list);
     //getting the stock from the list
     $stock = $list[$ch - 1];
     //creating new stock
     $stock = new Stock($stock->name, $stock->price, $amnt);
     //adding the stock to the account if already in the list and return
-    for ($i = 0; $i < count($account); $i++) {
+    $account[0]->account-= $amnt;
+    for ($i = 1; $i < count($account); $i++) {
         if ($account[$i]->name == $stock->name) {
             $account[$i]->quantity += $stock->quantity;
             echo "Bought $stock->quantity " . "$stock->name shares successfully";
@@ -82,6 +89,10 @@ function buy($account)
     return $account;
 }
 
+function saveList($list){
+    file_put_contents("StockList.json", json_encode($list));
+}
+
 /**
  * function to sell the stock from the list
  */
@@ -93,14 +104,19 @@ function sell($account)
     echo "Enter No with Stock To Sell : ";
     //validating the input
     $ch = validInt(Utility::getInt(), 1, count($account));
-    echo $account[$ch - 1]->name . " selected!\nEnter No Of Shares To Sell of " . $account[$ch - 1]->name . " : ";
-    $qt = validInt(Utility::getInt(), 1, $account[$ch - 1]->quantity);
+    echo $account[$ch]->name . " selected!\nEnter No Of Shares To Sell of " . $account[$ch]->name . " : ";
+    $qt = validInt(Utility::getInt(), 1, $account[$ch]->quantity);
     //removing the stock
-    $account[$ch - 1]->quantity -= $qt;
+    $account[$ch]->quantity -= $qt;
+    $list = printStockList(1);
+    $list[$ch-1]->Quantity += $qt ;
+    $account[0]->account += ($qt*$list[$ch-1]->price);
+    saveList($list);
+
     echo "sold $qt shares successfully";
     //check if the shares are empty to delete the entry completely
-    if ($account[$ch - 1]->quantity == 0) {
-        array_splice($account, ($ch - 1), 1);
+    if ($account[$ch]->quantity == 0) {
+        array_splice($account, ($ch), 1);
     }
     fscanf(STDIN, "%s\n");
     return $account;
@@ -155,12 +171,13 @@ function report($account)
         // /    var_dump($portfolio);
     $total = 0;
     echo "Stock Name | Per Share Price | No. Of Shares | Stock Price\n";
-    foreach ($account as $key) {
+    for ($i=1; $i < count($account) ; $i++) {
+        $key = $account[$i];
         echo sprintf("%-10s | rs %-12u | %-13u | rs %u", $key->name, $key->price, $key->quantity, ($key->quantity * $key->price)) . "\n";
         $total += ($key->quantity * $key->price);
     }
-    echo "Total Value Of Stocks is : " . $total . " rs\n";
-    echo "enter to menu ";
+    echo "Total Value Of Stocks is : " . $total . " rs\namount left in account : ".$account[0]->account;
+    echo "\nenter to menu ";
     fscanf(STDIN, "%s\n");
 }
 
@@ -169,21 +186,24 @@ function printAccount($account)
 {
     echo "No | Stock Name | Share Price | No. Of Shares | Stock Price \n";
     $i = 0;
-    foreach ($account as $key) {
-        echo sprintf("%-2u | %-10s | rs %-8u | %-13u | rs %u", ++$i, $key->name, $key->price, $key->quantity, ($key->quantity * $key->price)) . "\n";
+    for ($i=1; $i < count($account) ; $i++) {
+        $key = $account[$i];
+        echo sprintf("%-2u | %-10s | rs %-8u | %-13u | rs %u", $i, $key->name, $key->price, $key->quantity, ($key->quantity * $key->price)) . "\n";
     }
 }
 
 /**
  * function to print the list the stocks available to buy
  */
-function printStockList()
+function printStockList(int $s=0)
 {
     $list = json_decode(file_get_contents("StockList.json"));
-    echo "No | Stock Name | Share Price \n";
+    if($s===0){
+        echo "No | Stock Name | Share Price | Available\n";
     $i = 0;
     foreach ($list as $key) {
-        echo sprintf("%-1u. | %-10s | Rs %-12u ", ++$i, $key->name, $key->price) . "\n";
+        echo sprintf("%-1u. | %-10s | Rs %-12u | %-9u", ++$i, $key->name, $key->price , $key->Quantity) . "\n";
+    }
     }
     return $list;
 }

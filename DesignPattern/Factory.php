@@ -91,6 +91,4 @@ class CarFactory
 $racecar = CarFactory::getCar('race', 'red');
 var_dump($racecar);
 $passengercar = CarFactory::getCar("passenger","blue")
-
-
 ?>

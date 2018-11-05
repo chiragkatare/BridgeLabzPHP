@@ -191,7 +191,7 @@ function save($addressBook)
  */
 function menu($addressBook)
 {
-    echo "\n!!!!Address Book!!!!\n\nEnter 1 to add person\nEnter 2 to Edit a person\nEnter 3 to Delete a person\nEnter 4 to Sort and Display\nEnter anything to exit\n";
+    echo "\n!!!!Address Book!!!!\n\nEnter 1 to add person\nEnter 2 to Edit a person\nEnter 3 to Delete a person\nEnter 4 to Sort and Display\nEnter 5 to search\nEnter anything to exit\n";
     $ch = Utility::getInt();
     switch ($ch) {
         case '1':
@@ -234,6 +234,17 @@ function menu($addressBook)
             else{
                 menu($addressBook);
             }
+            fscanf(STDIN, "%s\n");
+            menu($addressBook);
+            break;
+        case '5':
+            $i = search($addressBook);
+            if($i>-1){
+                $arr=[];
+                $arr[] = $addressBook[$i];
+                printBook($arr);
+            }
+            echo"\n";
             fscanf(STDIN, "%s\n");
             menu($addressBook);
             break;

@@ -1,27 +1,10 @@
 [
     {
-        "name": "Amazon",
-        "price": 122,
-        "quantity": 23
+        "account": 1399745
     },
     {
         "name": "Apple",
         "price": 213,
-        "quantity": 1
-    },
-    {
-        "name": "Tvs",
-        "price": 457,
-        "quantity": 6
-    },
-    {
-        "name": "jugj",
-        "price": 45,
-        "quantity": 4
-    },
-    {
-        "name": "LML",
-        "price": 454,
-        "quantity": 25
+        "quantity": 255
     }
 ]
