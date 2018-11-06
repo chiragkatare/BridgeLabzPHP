@@ -357,5 +357,5 @@ class Utility
 
     
 } 
-echo Utility::isAnagram(15 , 51)
+//echo Utility::isAnagram(15 , 51)
 ?>
