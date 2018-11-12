@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * top level exception handler function to handle exception
+ */
+set_exception_handler(function ($e){
+    echo "\nException Occurred\n";
+    echo $e->getMessage();
+});
+
+/**
  * Class subitem
  */
 class SubItem{

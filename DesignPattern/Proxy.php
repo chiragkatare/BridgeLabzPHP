@@ -4,6 +4,14 @@
  * it shows a command line executioner which gives acces based upon login details
  */
 
+ /**
+ * top level exception handler function to handle exception
+ */
+set_exception_handler(function ($e){
+    echo "\nException Occurred\n";
+    echo $e->getMessage();
+});
+ 
 //require function from utility class for input
 require("/home/bridgelabz/Chirag/BridgeLabzPHP/Functional/Utility.php");
 
@@ -59,10 +67,12 @@ class Proxy extends CommandExecutioner
                     $this->isAdmin = true;
                 }
             } else {
-                echo "UserName PassWord Invalid\n";
+                //echo "UserName PassWord Invalid\n";
+                throw new Exception("UserName PassWord Invalid\n");
             }
         } else {
-            echo "UserName PassWord Invalid\n";
+            //echo "UserName PassWord Invalid\n";
+            throw new Exception("UserName PassWord Invalid\n");
         }
     }
 

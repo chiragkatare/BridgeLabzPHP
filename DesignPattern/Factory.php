@@ -3,6 +3,15 @@
  * Program Shows The Implementation of FActory desingn pattern in php
  */
 
+/**
+ * top level exception handler function to handle exception
+ */
+set_exception_handler(function ($e){
+    echo "\nException Occurred\n";
+    echo $e->getMessage();
+});
+
+
  /**
   * Inteface car to provide basic car features
   */
@@ -89,6 +98,9 @@ class CarFactory
 }
 //var racecar is the race car object
 $racecar = CarFactory::getCar('race', 'red');
-var_dump($racecar);
-$passengercar = CarFactory::getCar("passenger","blue")
+//var_dump($racecar);
+$passengercar = CarFactory::getCar("passenger","blue");
+echo "Reflection To Check Properties\n";
+$ref = new ReflectionObject($racecar);
+print_r($ref->getProperties());
 ?>

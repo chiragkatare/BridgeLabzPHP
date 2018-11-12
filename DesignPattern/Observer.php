@@ -1,5 +1,4 @@
 <?php 
-
 /**
  * Subject Interface to make subject implementation
  */
@@ -14,17 +13,24 @@ interface Subject
 }
 
 /**
+ * top level exception handler function to handle exception
+ */
+set_exception_handler(function ($e){
+    echo "\nException Occurred\n";
+    echo $e->getMessage();
+});
+
+
+/**
  * Class mail to make mail as an object
  */
 class Mail{
-
     //var name to store the senders name 
     public $sname;
     //var to store the receivers name
     public $rname ;
     //var to store the message 
     protected $message;
-
     /**
      * constructor function to initialize the methods
      */
@@ -33,7 +39,6 @@ class Mail{
         $this->message = $message ;
         $this->sname = $sname ;
     }
-
     /**
      * functiont to return the message
      */
@@ -47,12 +52,10 @@ class Mail{
  */
 class PostOffice implements Subject
 {
-
     //var mail to store the mails of post office in an array in an array
     private $mail = [];
     //var private to store the list of observers
     private $observer = [];
-
     /**
      * function to add the ail to the mail array
      */
@@ -61,7 +64,6 @@ class PostOffice implements Subject
         $this->mail[] = $m;
         $this->notify($m);
     }
-
     /** 
      * functiont to get mails 
      */
@@ -69,7 +71,6 @@ class PostOffice implements Subject
     {
         return $this->mail;
     }
-
     /**
      * functiont to attach the person to observer list
      */
@@ -77,7 +78,6 @@ class PostOffice implements Subject
     {
         $this->observer[] = $pers;
     }
-
     /**
      * funciton to detach/remove the person from the observer list
      */
@@ -86,7 +86,6 @@ class PostOffice implements Subject
             unset($this->observer[$key]);
         }
     }
-
     //function to notify the person if mail is received
     function notify(Mail $mail){
         for ($i=0; $i < count($this->observer); $i++) { 
@@ -95,9 +94,7 @@ class PostOffice implements Subject
             }
         }
     }
-
 }
-
 /**
  * interface observer to implement observer behaviour in the class
  */
@@ -105,7 +102,6 @@ interface Observer
 {
     function update(Mail $mail);
 }
-
 /**
  * class person to provide basic properties of a person
  */
@@ -113,14 +109,12 @@ class Person implements Observer
 {
     //var  name to store the name of the person
     public $name ;
-
     /**
      * constructor to initialize he default properties
      */
     function __construct(string $name ){
         $this->name = $name ;
     }
-
     /**
      * function to update the peron about the mail
      */
@@ -128,15 +122,11 @@ class Person implements Observer
         echo "New Mail to ".$mail->rname." - ".$mail->getMessage()."from $mail->sname\n" ;
     }
 }
-
 $post= new PostOffice();
-
 $akku = new Person("akshansh");
 $nishu = new Person("nishant");
 $post->attach($akku);
 $post->attach($nishu);
 $mail = new Mail("akshansh", "Where are you ?","nishant");
 $post->addMail($mail);
-
-
 ?>

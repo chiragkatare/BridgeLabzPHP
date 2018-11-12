@@ -1,4 +1,13 @@
 <?php 
+
+/**
+ * top level exception handler function to handle exception
+ */
+set_exception_handler(function ($e){
+    echo "\nException Occurred\n";
+    echo $e->getMessage();
+});
+
 /**
  * singleton class implementing single ton design patterns
  */
@@ -39,7 +48,7 @@ class Singleton
 /**
  * function uses singleton to destroy the singleton pattern by not utilizing the singleton pattern
  */
-function createInstanceWithoutConstructor($class)
+function createInstanceWithoutConstructor(String $class)
 {
     //gets class as a reflection class
     $reflector = new ReflectionClass($class);
@@ -74,16 +83,23 @@ function createInstanceWithoutConstructor($class)
         }
     }
     $serealized .= "}";
-    echo $serealized;
+    //echo $serealized;
     //returning the unserialized object from serialized string
     return unserialize($serealized);
 }
 
-//destroting singleton with constructor
-$newInst = createInstanceWithoutConstructor("Singleton");
-echo serialize($newInst);
+
+//echo serialize($newInst);
 $oldinst = Singleton::gInstance();
 //to check the object from the reflection method
+echo "getting instance of singleton via method and checking it whith print_r \n";
 print_r($oldinst);
-
+echo "calling method of sigleton class hello using singleton instance\n";
+$oldinst->hello();
+echo "\ndestroying singleton with reflection\n";
+$newInst = createInstanceWithoutConstructor("Singleton");
+echo "calling method of sigleton class hello using reflection created instance\n";
+$newInst->hello();
+echo "\n";
+print_r($newInst);
 ?>
